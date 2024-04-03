@@ -85,8 +85,8 @@
             "port": 6552,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 9,
@@ -96,8 +96,8 @@
             "port": 6447,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 10,

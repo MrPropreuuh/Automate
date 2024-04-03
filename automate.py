@@ -195,19 +195,12 @@ if fenetre_minecraft_ouverte():
                                                     pyautogui.press(
                                                         'enter')
                                                     pyautogui.sleep(1)
-                                                    pyautogui.press(
-                                                        'enter')
-                                                    pyautogui.sleep(1)
-                                                    pyautogui.write(
-                                                        f'/login {mdp}')
-                                                    pyautogui.press(
-                                                        'enter')
-                                                    pyautogui.sleep(0.5)
 
                                                     pyautogui.press(
                                                         '1')
                                                     pyautogui.rightClick()
-                                                    pyautogui.sleep(0.5)
+                                                    attendre_image(os.path.join(
+                                                        os.getcwd(), 'images', "join_pixelmon.png"), 0.8)
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "join_pixelmon.png"), 0.8):
                                                         print(
                                                             "Monde Pixelmon détecté.")
@@ -285,7 +278,8 @@ if fenetre_minecraft_ouverte():
                                                     pyautogui.press(
                                                         '1')
                                                     pyautogui.rightClick()
-                                                    pyautogui.sleep(0.5)
+                                                    attendre_image(os.path.join(
+                                                        os.getcwd(), 'images', "join_pixelmon.png"), 0.8)
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "join_pixelmon.png"), 0.8):
                                                         print(
                                                             "Monde Pixelmon détecté.")
