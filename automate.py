@@ -104,7 +104,7 @@ if fenetre_minecraft_ouverte():
         print("Menu Minecraft détecté. Début du script...")
         pyautogui.sleep(2)
 
-        for compte in donnees["comptes"][:30]:
+        for compte in donnees["comptes"][:50]:
             if compte["today"] == "true":
                 print(f"{compte['username']} a déjà fait son kit aujourd'hui.")
                 continue  # Passe au prochain compte
@@ -164,14 +164,13 @@ if fenetre_minecraft_ouverte():
                                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "test_proxy.png"), 0.8):
                                     print("Test du proxy en cours...")
                                     # Donnez du temps pour le test du proxy
-                                    pyautogui.sleep(5)
+                                    pyautogui.sleep(3)
 
                                     # Clique sur l'image apply_proxy.png
                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "apply_proxy.png"), 0.8):
                                         print("Application du proxy.")
-                                        pyautogui.sleep(1)
-                                        # Appuyez sur la touche Escape pour revenir (si nécessaire)
-
+                                        attendre_image(os.path.join(
+                                            os.getcwd(), 'images', "verification_multiplayer.png"), 0.8)
                                         print("Retour au multiplayer.")
                                         pyautogui.sleep(2)
                                         if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "direct_conn.png"), 0.8):
@@ -181,7 +180,9 @@ if fenetre_minecraft_ouverte():
                                             if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "join.png"), 0.8):
                                                 print(
                                                     "Rejoindre le serveur.")
-                                                pyautogui.sleep(5)
+                                                attendre_image(os.path.join(
+                                                    os.getcwd(), 'images', "connected_server.png"), 0.8)
+                                                pyautogui.sleep(3)
                                                 # Vérification pour l'enregistrement ou la connexion
                                                 if image_detectee(os.path.join(os.getcwd(), 'images', "register_acc.png"), 0.8):
                                                     print(
@@ -210,7 +211,9 @@ if fenetre_minecraft_ouverte():
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "join_pixelmon.png"), 0.8):
                                                         print(
                                                             "Monde Pixelmon détecté.")
-                                                        pyautogui.sleep(10)
+                                                        pyautogui.sleep(1)
+                                                        attendre_image(os.path.join(
+                                                            os.getcwd(), 'images', "select-starter-confirm.png"), 0.8)
                                                         if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "starter_pick.png"), 0.8):
                                                             print(
                                                                 "Choix du starter détecté.")
@@ -265,6 +268,9 @@ if fenetre_minecraft_ouverte():
 
                                                 # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
                                                 if image_detectee(os.path.join(os.getcwd(), 'images', "logging_acc.png"), 0.8):
+                                                    attendre_image(os.path.join(
+                                                        os.getcwd(), 'images', "connected_server.png"), 0.8)
+                                                    pyautogui.sleep(3)
                                                     print(
                                                         "Page de connexion détectée.")
                                                     pyautogui.press(

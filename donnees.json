@@ -41,8 +41,8 @@
             "port": 6159,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 5,
@@ -52,8 +52,8 @@
             "port": 6066,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 6,
@@ -63,8 +63,8 @@
             "port": 5682,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 7,
@@ -74,8 +74,8 @@
             "port": 5010,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 8,
