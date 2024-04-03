@@ -185,7 +185,7 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "false"
+            "today": "true"
         },
         {
             "id": 18,
@@ -552,6 +552,6 @@
         }
     ],
     "scriptSchedule": {
-        "date_heure": "2024-04-02 20:30:41"
+        "date_heure": "2024-04-04 01:28:29"
     }
 }
