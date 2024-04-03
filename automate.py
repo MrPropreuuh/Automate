@@ -6,12 +6,39 @@ import json
 import numpy as np
 from mss import mss
 import os
+import datetime
 
 
 def charger_donnees():
     with open('donnees.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
+
+
+def enregistrer_script_schedule(donnees):
+    # Format de la date et de l'heure pour la réutilisation en Python
+    date_heure_actuelle = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    donnees["scriptSchedule"] = {"date_heure": date_heure_actuelle}
+    sauvegarder_donnees(donnees)
+    print(f"Script Schedule enregistré pour {date_heure_actuelle}.")
+
+
+def verifier_disponibilite_kit(donnees, compte):
+    if "scriptSchedule" in donnees:
+        dernier_run = datetime.datetime.strptime(
+            donnees["scriptSchedule"]["date_heure"], "%Y-%m-%d %H:%M:%S")
+        if (datetime.datetime.now() - dernier_run) < datetime.timedelta(hours=24):
+            print(
+                f"Le kit starter n'est toujours pas disponible. Relancer le script après {(dernier_run + datetime.timedelta(hours=24)).strftime('%Y-%m-%d %H:%M:%S')}")
+            return False
+        else:
+            print("Kit disponible! Début de la récolte.")
+            if compte["today"] == "true":
+                compte["today"] = "false"
+            return True
+    else:
+        print("Aucune programmation précédente trouvée. Début de la récolte.")
+        return True
 
 
 def fenetre_minecraft_ouverte():
@@ -82,6 +109,9 @@ def mettre_a_jour_status_si_kit_valid(donnees, compte):
     if compte["today"] == "false":
         compte["today"] = "true"
         print(f"Compte {compte['username']} a un kit changement réussi.")
+    if compte["id"] == 1:  # Vérifie si l'ID du compte est 1
+        # Appel de la fonction pour enregistrer la date et l'heure
+        enregistrer_script_schedule(donnees)
     sauvegarder_donnees(donnees)
 
 
@@ -90,12 +120,17 @@ def mettre_a_jour_status_si_kit_false(donnees, compte):
         compte["status"] = "error"
     if compte["today"] == "false":
         compte["today"] = "true"
-        print(
-            f"Compte {compte['username']} n'a pas de kit changement réussit.")
+        print(f"Compte {compte['username']} n'a pas de kit changement réussi.")
+    if compte["id"] == 1:  # Vérifie si l'ID du compte est 1
+        # Appel de la fonction pour enregistrer la date et l'heure
+        enregistrer_script_schedule(donnees)
     sauvegarder_donnees(donnees)
 
 
 donnees = charger_donnees()
+
+if not verifier_disponibilite_kit(donnees):
+    exit()
 
 if fenetre_minecraft_ouverte():
     print("Minecraft 1.12.2 est ouvert. Recherche du menu principal...")
@@ -278,6 +313,7 @@ if fenetre_minecraft_ouverte():
                                                     pyautogui.press(
                                                         '1')
                                                     pyautogui.rightClick()
+                                                    pyautogui.sleep(1)
                                                     attendre_image(os.path.join(
                                                         os.getcwd(), 'images', "join_pixelmon.png"), 0.8)
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "join_pixelmon.png"), 0.8):

@@ -108,7 +108,7 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "false"
+            "today": "true"
         },
         {
             "id": 11,
@@ -118,8 +118,8 @@
             "port": 6679,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 12,
@@ -129,8 +129,8 @@
             "port": 8506,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 13,
@@ -140,8 +140,8 @@
             "port": 6585,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 14,
@@ -151,8 +151,8 @@
             "port": 6090,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 15,
@@ -162,8 +162,8 @@
             "port": 6132,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 16,
@@ -173,8 +173,8 @@
             "port": 6790,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error",
-            "today": "false"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 17,
@@ -550,5 +550,8 @@
             "status": "error",
             "today": "false"
         }
-    ]
+    ],
+    "scriptSchedule": {
+        "date_heure": "2024-04-02 20:30:41"
+    }
 }
