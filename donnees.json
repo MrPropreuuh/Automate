@@ -4,301 +4,551 @@
             "id": 1,
             "username": "MysticWander",
             "motDePasse": "?w25okGx9E",
-            "proxy": "45.41.179.201",
-            "port": 6736,
+            "proxy": "154.85.126.217",
+            "port": 5224,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "true"
         },
         {
             "id": 2,
             "username": "EchoFrostbite",
             "motDePasse": "!w437S5T!n",
-            "proxy": "45.141.81.21",
-            "port": 6081,
+            "proxy": "64.137.62.232",
+            "port": 5877,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "true"
         },
         {
             "id": 3,
             "username": "TwilightHarbor",
             "motDePasse": "5ft2y?Sh5Z",
-            "proxy": "64.64.118.45",
-            "port": 6628,
+            "proxy": "154.194.8.155",
+            "port": 5686,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "success",
+            "today": "true"
         },
         {
             "id": 4,
             "username": "QuantumSquid",
             "motDePasse": "xBy01!Y0p8",
-            "proxy": "173.214.176.37",
-            "port": 6008,
+            "proxy": "45.251.63.87",
+            "port": 6159,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 5,
             "username": "EmberScribe",
             "motDePasse": "9Cz8VmV7!Y",
-            "proxy": "198.12.112.128",
-            "port": 5139,
+            "proxy": "194.116.249.215",
+            "port": 6066,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 6,
             "username": "SilentCrafter",
             "motDePasse": "u51uG?R8tA",
-            "proxy": "45.61.127.17",
-            "port": 5956,
+            "proxy": "171.22.249.102",
+            "port": 5682,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 7,
             "username": "PixelPilgrim",
             "motDePasse": "Q35?wH4o?b",
-            "proxy": "104.238.49.110",
-            "port": 5764,
+            "proxy": "154.85.126.3",
+            "port": 5010,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 8,
             "username": "SunlitGlitch",
             "motDePasse": "?YPmH01k42",
-            "proxy": "161.123.101.74",
-            "port": 6700,
+            "proxy": "64.137.49.11",
+            "port": 6552,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 9,
             "username": "NeonNomad",
             "motDePasse": "5?2cqU2uFQ",
-            "proxy": "185.245.25.236",
-            "port": 6497,
+            "proxy": "206.41.175.234",
+            "port": 6447,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 10,
             "username": "CrypticNebula",
             "motDePasse": "!3mv3hEi?3",
-            "proxy": "134.73.18.164",
-            "port": 6747,
+            "proxy": "154.95.1.73",
+            "port": 6595,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 11,
             "username": "AzurePhantom",
             "motDePasse": "a17x9?iH1Q",
-            "proxy": "193.148.92.205",
-            "port": 6132,
+            "proxy": "64.137.49.138",
+            "port": 6679,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 12,
             "username": "RandomVoyager",
             "motDePasse": "T1Lo6K??2s",
-            "proxy": "184.174.126.250",
-            "port": 6542,
+            "proxy": "185.242.93.166",
+            "port": 8506,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 13,
             "username": "ForgottenMirth",
             "motDePasse": "1M44AdyNt?",
-            "proxy": "45.251.63.244",
-            "port": 6316,
+            "proxy": "206.41.172.25",
+            "port": 6585,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 14,
             "username": "ElementalDrift",
             "motDePasse": "11t!vUQWs9",
-            "proxy": "64.137.49.139",
-            "port": 6680,
+            "proxy": "185.242.94.5",
+            "port": 6090,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 15,
             "username": "ShadowSculptor",
             "motDePasse": "Ldo03!s8Pu",
-            "proxy": "64.137.49.20",
-            "port": 6561,
+            "proxy": "45.251.63.60",
+            "port": 6132,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 16,
             "username": "FabledStrider",
             "motDePasse": "3WD?8x0aKH",
-            "proxy": "45.251.63.82",
-            "port": 6154,
+            "proxy": "206.41.172.230",
+            "port": 6790,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 17,
             "username": "VoidGlimmer",
             "motDePasse": "M46m!6?UOm",
-            "proxy": "185.242.93.190",
-            "port": 8530,
+            "proxy": "216.173.122.179",
+            "port": 5906,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 18,
             "username": "CelestialRiddle",
             "motDePasse": "0F26?n2Fdj",
-            "proxy": "194.116.250.11",
-            "port": 6469,
+            "proxy": "185.242.95.206",
+            "port": 6547,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 19,
             "username": "LunarLurker",
             "motDePasse": "!oREfiB363",
-            "proxy": "171.22.249.145",
-            "port": 5725,
+            "proxy": "156.238.10.138",
+            "port": 5220,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 20,
             "username": "SolarSpectre",
             "motDePasse": "8Al3!5wXH6",
-            "proxy": "185.245.27.226",
-            "port": 6999,
+            "proxy": "154.85.126.83",
+            "port": 5090,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 21,
             "username": "PhantomQuill",
             "motDePasse": "6wE?k1M9EI",
-            "proxy": "185.245.25.202",
-            "port": 6463,
+            "proxy": "185.245.25.144",
+            "port": 6405,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 22,
             "username": "ChaosWeaver",
             "motDePasse": "J13TP2mk!L",
-            "proxy": "154.95.1.214",
-            "port": 6736,
+            "proxy": "64.137.48.149",
+            "port": 6356,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 23,
             "username": "SereneStardust",
             "motDePasse": "1?3hR6wrSE",
-            "proxy": "171.22.251.223",
-            "port": 5753,
+            "proxy": "154.85.126.161",
+            "port": 5168,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 24,
             "username": "AbyssalEcho",
             "motDePasse": "D?I0gS1Q7w",
-            "proxy": "185.242.95.66",
-            "port": 6407,
+            "proxy": "185.242.92.217",
+            "port": 8301,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 25,
             "username": "CosmicDrifter",
             "motDePasse": "u?dlW7!57n",
-            "proxy": "216.173.75.5",
-            "port": 6306,
+            "proxy": "185.242.93.177",
+            "port": 8517,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 26,
             "username": "NetherNomad",
             "motDePasse": "rN64!bd0J4",
-            "proxy": "154.194.8.104",
-            "port": 5635,
+            "proxy": "185.242.94.226",
+            "port": 6311,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 27,
             "username": "EtherealEngineer",
             "motDePasse": "7e!R4T5n0I",
-            "proxy": "109.238.12.156",
-            "port": 24586,
+            "proxy": "171.22.249.208",
+            "port": 5788,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 28,
             "username": "MirageMason",
             "motDePasse": "1czf!3sW4E",
-            "proxy": "109.238.12.156",
-            "port": 1365,
+            "proxy": "185.242.92.72",
+            "port": 8156,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 29,
             "username": "StarlitSmith",
             "motDePasse": "Q?c5JPD0F3",
-            "proxy": "163.172.153.194",
-            "port": 16379,
+            "proxy": "185.242.95.71",
+            "port": 6412,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
         },
         {
             "id": 30,
             "username": "DreamDiver",
             "motDePasse": "n27TI1k?Fl",
-            "proxy": "163.172.169.27",
-            "port": 16379,
+            "proxy": "185.245.25.30",
+            "port": 6291,
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
-            "status": "error"
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 31,
+            "username": "WhisperingWisp",
+            "motDePasse": "?4EJu8bO0U",
+            "proxy": "171.22.248.6",
+            "port": 5898,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 32,
+            "username": "FrostedFern",
+            "motDePasse": "0Wp5x?Bne7",
+            "proxy": "216.173.74.80",
+            "port": 5760,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 33,
+            "username": "CrimsonCraze",
+            "motDePasse": "dg683w7!P5",
+            "proxy": "64.137.49.115",
+            "port": 6656,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 34,
+            "username": "VelvetVortex",
+            "motDePasse": "!qLu48oHg4",
+            "proxy": "154.85.126.212",
+            "port": 5219,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 35,
+            "username": "EchoingEmber",
+            "motDePasse": "R!f357YwGi",
+            "proxy": "64.137.60.251",
+            "port": 5315,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 36,
+            "username": "SapphireSpecter",
+            "motDePasse": "1q!9DC8INQ",
+            "proxy": "64.137.62.157",
+            "port": 5802,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 37,
+            "username": "TwilightTinker",
+            "motDePasse": "6Yk?9yv57t",
+            "proxy": "23.236.222.210",
+            "port": 7241,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 38,
+            "username": "PhantomPioneer",
+            "motDePasse": "j!!7V20p3F",
+            "proxy": "206.41.175.184",
+            "port": 6397,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 39,
+            "username": "ObsidianOrbit",
+            "motDePasse": "Y8b82?NHOJ",
+            "proxy": "216.173.122.2",
+            "port": 5729,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 40,
+            "username": "ArcaneAlchemist",
+            "motDePasse": "0MkBYN25?U",
+            "proxy": "154.85.126.128",
+            "port": 5135,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 41,
+            "username": "BreezyBlade",
+            "motDePasse": "U8!e7mY48g",
+            "proxy": "185.242.92.165",
+            "port": 8249,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 42,
+            "username": "DuskDreamer",
+            "motDePasse": "c!32Sjofr9",
+            "proxy": "171.22.251.213",
+            "port": 5743,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 43,
+            "username": "PolarProwler",
+            "motDePasse": "1f5Nb!4Ud8",
+            "proxy": "206.41.175.79",
+            "port": 6292,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 44,
+            "username": "FluxFable",
+            "motDePasse": "P4i!20YBDa",
+            "proxy": "185.242.95.116",
+            "port": 6457,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 45,
+            "username": "MirageMariner",
+            "motDePasse": "3!pG5mS5dy",
+            "proxy": "154.194.8.55",
+            "port": 5586,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 46,
+            "username": "NeonNebula",
+            "motDePasse": "pPq2?eN1W1",
+            "proxy": "185.242.95.12",
+            "port": 6353,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 47,
+            "username": "WanderingWillow",
+            "motDePasse": "!t0mHWJ069",
+            "proxy": "171.22.248.100",
+            "port": 5992,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 48,
+            "username": "SilkenShadow",
+            "motDePasse": "yN91?5U!20",
+            "proxy": "185.245.27.1",
+            "port": 6774,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 49,
+            "username": "GlacialGambit",
+            "motDePasse": "439WJAw?RF",
+            "proxy": "64.137.48.140",
+            "port": 6347,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
+        },
+        {
+            "id": 50,
+            "username": "CelestialCipher",
+            "motDePasse": "r!o7C8Mh9W",
+            "proxy": "194.116.249.208",
+            "port": 6059,
+            "usernameProxy": "UsernameProxy",
+            "mdpProxy": "MdpProxy",
+            "status": "error",
+            "today": "false"
         }
     ]
 }

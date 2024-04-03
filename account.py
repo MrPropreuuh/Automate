@@ -19,32 +19,37 @@ def generer_mot_de_passe():
 
 
 def verifier_et_creer_donnees():
-    pseudos = [
-        "MysticWander", "EchoFrostbite", "TwilightHarbor", "QuantumSquid",
-        "EmberScribe", "SilentCrafter", "PixelPilgrim", "SunlitGlitch",
-        "NeonNomad", "CrypticNebula", "AzurePhantom", "RandomVoyager",
-        "ForgottenMirth", "ElementalDrift", "ShadowSculptor", "FabledStrider",
-        "VoidGlimmer", "CelestialRiddle", "LunarLurker", "SolarSpectre",
-        "PhantomQuill", "ChaosWeaver", "SereneStardust", "AbyssalEcho",
-        "CosmicDrifter", "NetherNomad", "EtherealEngineer", "MirageMason",
-        "StarlitSmith", "DreamDiver"
+    pseudos_supplementaires = [
+        "WhisperingWisp", "FrostedFern", "CrimsonCraze", "VelvetVortex",
+        "EchoingEmber", "SapphireSpecter", "TwilightTinker", "PhantomPioneer",
+        "ObsidianOrbit", "ArcaneAlchemist", "BreezyBlade", "DuskDreamer",
+        "PolarProwler", "FluxFable", "MirageMariner", "NeonNebula",
+        "WanderingWillow", "SilkenShadow", "GlacialGambit", "CelestialCipher"
     ]
 
-    if not os.path.exists('donnees.json') or os.stat('donnees.json').st_size == 0:
-        donnees = {
-            "comptes": [
-                {"id": i+1,
-                 "username": pseudo,
-                 "motDePasse": generer_mot_de_passe(),
-                 "proxy": "adresse.proxy.com",
-                 "port": 8080,
-                 "usernameProxy": "UsernameProxy",
-                 "mdpProxy": "MdpProxy",
-                 "status": "non défini"}
-                for i, pseudo in enumerate(pseudos)
-            ]
-        }
-        sauvegarder_donnees(donnees)
+    donnees_existantes = charger_donnees()
+    pseudos_existants = [compte["username"]
+                         for compte in donnees_existantes.get("comptes", [])]
+    nouveaux_pseudos = [
+        pseudo for pseudo in pseudos_supplementaires if pseudo not in pseudos_existants]
+
+    if nouveaux_pseudos:
+        id_suivant = len(pseudos_existants) + 1
+        comptes_supplementaires = [
+            {"id": i+id_suivant,
+             "username": pseudo,
+             "motDePasse": generer_mot_de_passe(),
+             "proxy": "adresse.proxy.com",
+             "port": 8080,
+             "usernameProxy": "UsernameProxy",
+             "mdpProxy": "MdpProxy",
+             "status": "non défini"}
+            for i, pseudo in enumerate(nouveaux_pseudos)
+        ]
+
+        donnees_existantes["comptes"].extend(comptes_supplementaires)
+        sauvegarder_donnees(donnees_existantes)
+
     return charger_donnees()
 
 
@@ -57,6 +62,8 @@ def charger_donnees():
     try:
         with open('donnees.json', 'r') as fichier:
             return json.load(fichier)
+    except FileNotFoundError:
+        return {}
     except json.JSONDecodeError:
         return {}
 
