@@ -295,7 +295,7 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "false"
         },
         {
             "id": 28,
