@@ -9,7 +9,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "true"
         },
         {
             "id": 2,
@@ -20,7 +21,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 3,
@@ -31,7 +33,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 4,
@@ -42,7 +45,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 5,
@@ -53,7 +57,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 6,
@@ -64,7 +69,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 7,
@@ -75,7 +81,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 8,
@@ -86,7 +93,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 9,
@@ -97,7 +105,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 10,
@@ -108,7 +117,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 11,
@@ -119,7 +129,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 12,
@@ -130,7 +141,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 13,
@@ -141,7 +153,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 14,
@@ -152,7 +165,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 15,
@@ -163,7 +177,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 16,
@@ -174,7 +189,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 17,
@@ -185,7 +201,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 18,
@@ -196,7 +213,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 19,
@@ -207,7 +225,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 20,
@@ -218,7 +237,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 21,
@@ -229,7 +249,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 22,
@@ -240,7 +261,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 23,
@@ -251,7 +273,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 24,
@@ -262,7 +285,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 25,
@@ -273,7 +297,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 26,
@@ -284,7 +309,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 27,
@@ -295,7 +321,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "false"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 28,
@@ -306,7 +333,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 29,
@@ -317,7 +345,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 30,
@@ -328,7 +357,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 31,
@@ -339,7 +369,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 32,
@@ -350,7 +381,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 33,
@@ -361,7 +393,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 34,
@@ -372,7 +405,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 35,
@@ -383,7 +417,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 36,
@@ -394,7 +429,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 37,
@@ -405,7 +441,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 38,
@@ -416,7 +453,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 39,
@@ -427,7 +465,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 40,
@@ -438,7 +477,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 41,
@@ -449,7 +489,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 42,
@@ -460,7 +501,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 43,
@@ -471,7 +513,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 44,
@@ -482,7 +525,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 45,
@@ -493,7 +537,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 46,
@@ -504,7 +549,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 47,
@@ -515,7 +561,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 48,
@@ -526,7 +573,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 49,
@@ -537,7 +585,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         },
         {
             "id": 50,
@@ -548,7 +597,8 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "success",
-            "today": "true"
+            "today": "true",
+            "ivsCheck": "false"
         }
     ],
     "scriptSchedule": {

@@ -1,8 +1,8 @@
+import subprocess
 import time
 import pygetwindow as gw
 import pyautogui
 import cv2
-import re
 import json
 import numpy as np
 from mss import mss
@@ -10,70 +10,22 @@ import os
 import datetime
 import keyboard
 
-chemin_log = r"C:\Users\vince\Desktop\Tout\MultiMC\instances\1.12.2\.minecraft\logs\latest.log"
-chemin_json = r"D:\wamp64\www\data_view\data.json"
-
-
-# Charger les données existantes depuis le fichier JSON
-def charger_donnees_ivs(chemin):
-    if os.path.exists(chemin):
-        with open(chemin, 'r') as fichier:
-            return json.load(fichier)
-    return {}
-
-# Sauvegarder les données dans le fichier JSON
-
-
-def sauvegarder_donnees(donnees, chemin):
-    with open(chemin, 'w') as fichier:
-        json.dump(donnees, fichier, indent=4)
-
-# Extraire les IVs de Pokémon depuis le fichier log
-
-
-def extraire_ivs_pokemon(chemin_log):
-    # Mise à jour de la regex pour correspondre spécifiquement aux lignes IV et capturer les valeurs après le code de couleur (�e)
-    regex_ivs = r"\[CHAT\] .+ IVs: �e(\d+)"
-    ivs_categories = ["hp", "atk", "def", "spa", "spd", "spe"]
-    # Initialise le dictionnaire avec les catégories d'IVs
-    ivs = dict.fromkeys(ivs_categories, 0)
-    with open(chemin_log, 'r', encoding='utf-8') as fichier:
-        log_lines = fichier.readlines()
-
-    for category in ivs_categories:
-        for line in log_lines:
-            if category.upper() in line:  # Vérifie si la catégorie est mentionnée dans la ligne
-                match = re.search(regex_ivs, line)
-                if match:
-                    # Attribue la valeur trouvée à la catégorie correspondante
-                    ivs[category] = int(match.group(1))
-                    break  # Passe à la prochaine catégorie après avoir trouvé une correspondance
-
-    return ivs
-
-
-# Mettre à jour le fichier JSON avec les nouvelles données
-
-
-def mettre_a_jour_json(chemin_json, ivs, pseudo_dresseur):
-    donnees = charger_donnees(chemin_json)
-    # ID unique basé sur le nombre existant de pokémons
-    pokemon_id = len(donnees.get("pokemon", [])) + 1
-    pokemon = {
-        "id": pokemon_id,
-        "ivs": ivs,
-        "trainer": pseudo_dresseur
-    }
-    if "pokemon" not in donnees:
-        donnees["pokemon"] = []
-    donnees["pokemon"].append(pokemon)
-    sauvegarder_donnees(donnees, chemin_json)
-
 
 def charger_donnees():
     with open('donnees.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
+
+
+def mettre_a_jour_status_check(donnees, compte_username):
+    # Trouver le compte dans les données chargées
+    for compte in donnees["comptes"]:
+        if compte["username"] == compte_username:
+            compte["ivsCheck"] = "true"
+            break  # Sortie de la boucle une fois le compte trouvé et mis à jour
+
+    # Sauvegarde des données mises à jour dans le fichier JSON
+    sauvegarder_donnees(donnees, 'donnees.json')
 
 
 def enregistrer_script_schedule(donnees):
@@ -201,9 +153,9 @@ def main():
             pyautogui.sleep(2)
 
             for compte in donnees["comptes"][:50]:
-                if compte["today"] == "true":
+                if compte["ivsCheck"] == "true":
                     print(
-                        f"{compte['username']} a déjà fait son kit aujourd'hui.")
+                        f"{compte['username']} a déja été checker.")
                     continue  # Passe au prochain compte
                 id_compte = compte["id"]
                 pyautogui.sleep(1)
@@ -312,33 +264,42 @@ def main():
                                                                 pyautogui.sleep(
                                                                     1)
                                                                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "validate_starter.png"), 0.8):
-                                                                    pyautogui.sleep(
-                                                                        3)
+                                                                    print(
+                                                                        "Validation du starter détectée.")
                                                                     pyautogui.press(
                                                                         'enter')
                                                                     pyautogui.sleep(
                                                                         1)
                                                                     pyautogui.write(
-                                                                        '/ivs 1')
+                                                                        '/kit aventurier')
                                                                     pyautogui.press(
                                                                         'enter')
                                                                     pyautogui.sleep(
                                                                         1)
-                                                                    ivs = extraire_ivs_pokemon(
-                                                                        chemin_log)
-                                                                    charger_donnees_ivs(
-                                                                        chemin_json, ivs, compte['username'])
-                                                                    print(
-                                                                        "IVs de Pokémon et informations du dresseur sauvegardés.")
-                                                                    pyautogui.press(
-                                                                        'escape')
-                                                                    pyautogui.leftClick()
-                                                                    print(
-                                                                        "Déconnexion.")
-                                                                    pyautogui.sleep(
-                                                                        1)
-                                                                    pyautogui.press(
-                                                                        'escape')
+                                                                    if image_detectee(os.path.join(os.getcwd(), 'images', "kit_valid.png"), 0.8):
+                                                                        mettre_a_jour_status_si_kit_valid(
+                                                                            donnees, compte)
+                                                                        pyautogui.press(
+                                                                            'escape')
+                                                                        pyautogui.leftClick()
+                                                                        print(
+                                                                            "Déconnexion.")
+                                                                        pyautogui.sleep(
+                                                                            1)
+                                                                        pyautogui.press(
+                                                                            'escape')
+                                                                    if image_detectee(os.path.join(os.getcwd(), 'images', "kit_fail.png"), 0.8):
+                                                                        mettre_a_jour_status_si_kit_false(
+                                                                            donnees, compte)
+                                                                        pyautogui.press(
+                                                                            'escape')
+                                                                        pyautogui.leftClick()
+                                                                        print(
+                                                                            "Déconnexion.")
+                                                                        pyautogui.sleep(
+                                                                            1)
+                                                                        pyautogui.press(
+                                                                            'escape')
                                                                 else:
                                                                     print(
                                                                         "Validation du starter non détectée.")
@@ -386,21 +347,24 @@ def main():
                                                                 'enter')
                                                             pyautogui.sleep(
                                                                 1)
-                                                            ivs = extraire_ivs_pokemon(
-                                                                chemin_log)
-                                                            charger_donnees_ivs(
-                                                                chemin_json, ivs, compte['username'])
+                                                            pseudo_dresseur = compte['username']
+                                                            subprocess.run(
+                                                                ["python", "process_logs.py", pseudo_dresseur])
+                                                            mettre_a_jour_status_check(
+                                                                donnees, pseudo_dresseur)
                                                             print(
-                                                                "IVs de Pokémon et informations du dresseur sauvegardés.")
+                                                                "Status de l'IVS mis a jours correctement.")
                                                             pyautogui.press(
                                                                 'escape')
-                                                            pyautogui.leftClick()
+                                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "disconnect.png"), 0.8):
+                                                                print(
+                                                                    "Déconnexion.")
+                                                                pyautogui.sleep(
+                                                                    1)
                                                             print(
                                                                 "Déconnexion.")
                                                             pyautogui.sleep(
                                                                 1)
-                                                            pyautogui.press(
-                                                                'escape')
 
                                                     else:
                                                         print(
