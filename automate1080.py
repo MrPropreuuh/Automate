@@ -47,16 +47,21 @@ def sauvegarder_donnees(donnees, nom_fichier='donnees.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
-
 def cliquer_sur_image(image_path, seuil):
     max_val, max_loc, shape = trouver_image(image_path)
     if max_val > seuil:  # Utilisation du seuil spécifié
         # Calcul du centre de l'image détectée
         centre_x = max_loc[0] + shape[1] / 2
         centre_y = max_loc[1] + shape[0] / 2
-        pyautogui.click(centre_x, centre_y)
+        # Positionne la souris au centre de l'image détectée
+        pyautogui.moveTo(centre_x, centre_y)
+        # Attend 0.1 seconde
+        time.sleep(0.1)
+        # Clique à l'emplacement actuel de la souris
+        pyautogui.click()
         return True
     return False
+
 
 
 def attendre_image(image_path, seuil=0.8, temps_attente_max=30, intervalle=0.5):
@@ -268,25 +273,25 @@ def main():
                                                                                 donnees, compte)
                                                                             pyautogui.press(
                                                                                 'escape')
-                                                                            pyautogui.leftClick()
-                                                                            print(
-                                                                                "Déconnexion.")
-                                                                            pyautogui.sleep(
-                                                                                1)
-                                                                            pyautogui.press(
-                                                                                'escape')
+                                                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "disconnect.png"), 0.8):
+                                                                                    print(
+                                                                                        "Déconnexion.")
+                                                                                    pyautogui.sleep(
+                                                                                        5)
+                                                                                    pyautogui.press(
+                                                                                        'escape')
                                                                         if image_detectee(os.path.join(os.getcwd(), 'images', "kit_fail.png"), 0.8):
                                                                             mettre_a_jour_status_si_kit_false(
                                                                                 donnees, compte)
                                                                             pyautogui.press(
                                                                                 'escape')
-                                                                            pyautogui.leftClick()
-                                                                            print(
-                                                                                "Déconnexion.")
-                                                                            pyautogui.sleep(
-                                                                                1)
-                                                                            pyautogui.press(
-                                                                                'escape')
+                                                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "disconnect.png"), 0.8):
+                                                                                    print(
+                                                                                        "Déconnexion.")
+                                                                                    pyautogui.sleep(
+                                                                                        5)
+                                                                                    pyautogui.press(
+                                                                                        'escape')
                                                                     else:
                                                                         print(
                                                                             "Validation du starter non détectée.")
@@ -339,25 +344,25 @@ def main():
                                                                         donnees, compte)
                                                                     pyautogui.press(
                                                                         'escape')
-                                                                    pyautogui.leftClick()
-                                                                    print(
-                                                                        "Déconnexion.")
-                                                                    pyautogui.sleep(
-                                                                        1)
-                                                                    pyautogui.press(
-                                                                        'escape')
+                                                                    if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "disconnect.png"), 0.8):
+                                                                                    print(
+                                                                                        "Déconnexion.")
+                                                                                    pyautogui.sleep(
+                                                                                        5)
+                                                                                    pyautogui.press(
+                                                                                        'escape')
                                                                 if image_detectee(os.path.join(os.getcwd(), 'images', "kit_fail.png"), 0.8):
                                                                     mettre_a_jour_status_si_kit_false(
                                                                         donnees, compte)
                                                                     pyautogui.press(
                                                                         'escape')
-                                                                    pyautogui.leftClick()
-                                                                    print(
-                                                                        "Déconnexion.")
-                                                                    pyautogui.sleep(
-                                                                        1)
-                                                                    pyautogui.press(
-                                                                        'escape')
+                                                                    if cliquer_sur_image(os.path.join(os.getcwd(), 'images', "disconnect.png"), 0.8):
+                                                                                    print(
+                                                                                        "Déconnexion.")
+                                                                                    pyautogui.sleep(
+                                                                                        5)
+                                                                                    pyautogui.press(
+                                                                                        'escape')
 
                                                         else:
                                                             print(
