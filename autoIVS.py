@@ -67,9 +67,15 @@ def cliquer_sur_image(image_path, seuil):
         # Calcul du centre de l'image détectée
         centre_x = max_loc[0] + shape[1] / 2
         centre_y = max_loc[1] + shape[0] / 2
-        pyautogui.click(centre_x, centre_y)
+        # Positionne la souris au centre de l'image détectée
+        pyautogui.moveTo(centre_x, centre_y)
+        # Attend 0.1 seconde
+        time.sleep(0.1)
+        # Clique à l'emplacement actuel de la souris
+        pyautogui.click()
         return True
     return False
+
 
 
 def attendre_image(image_path, seuil=0.8, temps_attente_max=30, intervalle=0.5):
@@ -360,7 +366,9 @@ def main():
                                                                 print(
                                                                     "Déconnexion.")
                                                                 pyautogui.sleep(
-                                                                    1)
+                                                                    3)
+                                                                pyautogui.press(
+                                                                    'escape')
                                                             print(
                                                                 "Déconnexion.")
                                                             pyautogui.sleep(

@@ -2,8 +2,8 @@ import json
 import re
 import sys
 
-chemin_log = r"C:\Users\vince\Desktop\Tout\MultiMC\instances\1.12.2\.minecraft\logs\latest.log"
-chemin_json = r"D:\wamp64\www\data_view\data.json"
+chemin_log = r"C:\MultiMc\instances\1.12.2\.minecraft\logs\latest.log"
+chemin_json = r"C:\wamp64\www\data_view\data.json"
 
 # Fonction pour charger les données du fichier JSON
 
