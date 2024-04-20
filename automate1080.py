@@ -9,6 +9,13 @@ import os
 import datetime
 import keyboard
 import subprocess
+from pynput.keyboard import Key
+from pynput.keyboard import Controller as KeyboardController
+from pynput.mouse import Controller as MouseController
+from pynput.mouse import Button
+
+keyboard_controller = KeyboardController()
+mouse = MouseController()
 
 
 def run_ip_changer():
@@ -39,7 +46,7 @@ def enregistrer_script_schedule(donnees):
 def fenetre_minecraft_ouverte():
     titres_fenetres = [w.title for w in gw.getAllWindows()]
     for titre in titres_fenetres:
-        if "Minecraft* 1.16.5" in titre:
+        if "Minecraft" in titre:
             return True
     return False
 
@@ -203,25 +210,25 @@ def main():
                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join.png"), 0.8):
                                         print(
                                             "Rejoindre le serveur.")
-                                        attendre_image(os.path.join(
-                                            os.getcwd(), 'images1080', "connected_server.png"), 0.8)
                                         pyautogui.sleep(3)
                                         # Vérification pour l'enregistrement ou la connexion
                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "register_acc.png"), 0.8):
                                             print(
                                                 "Page d'enregistrement détectée.")
-                                            pyautogui.press(
-                                                'enter')
+                                            keyboard_controller.press(
+                                                Key.enter)
                                             pyautogui.sleep(1)
                                             pyautogui.write(
                                                 f'/register {mdp} {mdp}')
-                                            pyautogui.press(
-                                                'enter')
+                                            keyboard_controller.press(
+                                                Key.enter)
                                             pyautogui.sleep(1)
 
-                                            pyautogui.press(
-                                                '1')
-                                            pyautogui.rightClick()
+                                            keyboard_controller.press('1')
+                                            keyboard_controller.release('1')
+                                            pyautogui.sleep(1)
+                                            mouse.click(Button.right, 1)
+
                                             attendre_image(os.path.join(
                                                 os.getcwd(), 'images1080', "join_pixelmon.png"), 0.8)
                                             if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join_pixelmon.png"), 0.8):
@@ -231,6 +238,8 @@ def main():
                                                     1)
                                                 attendre_image(os.path.join(
                                                     os.getcwd(), 'images1080', "select-starter-confirm.png"), 0.8)
+                                                attendre_image(os.path.join(
+                                                    os.getcwd(), 'images1080', "select_pick.png"), 0.8)
                                                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "starter_pick.png"), 0.8):
                                                     print(
                                                         "Choix du starter détecté.")
@@ -239,21 +248,25 @@ def main():
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "validate_starter.png"), 0.8):
                                                         print(
                                                             "Validation du starter détectée.")
-                                                        pyautogui.press(
-                                                            'enter')
+                                                        pyautogui.sleep(
+                                                            10)
+                                                        keyboard_controller.press(
+                                                            Key.enter)
                                                         pyautogui.sleep(
                                                             1)
                                                         pyautogui.write(
                                                             '/kit aventurier')
-                                                        pyautogui.press(
-                                                            'enter')
+                                                        keyboard_controller.press(
+                                                            Key.enter)
                                                         pyautogui.sleep(
                                                             1)
                                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
                                                             mettre_a_jour_status_si_kit_valid(
                                                                 donnees, compte)
-                                                            pyautogui.press(
-                                                                'escape')
+                                                            keyboard_controller.press(
+                                                                Key.esc)
+                                                            keyboard_controller.release(
+                                                                Key.esc)
                                                             attendre_image(os.path.join(
                                                                 os.getcwd(), 'images1080', "disconnect.png"), 0.8)
                                                             if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
@@ -284,26 +297,25 @@ def main():
                                             else:
                                                 print(
                                                     "Monde Pixelmon non détecté.")
-
                                         # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
+                                        attendre_image(os.path.join(
+                                            os.getcwd(), 'images1080', "logging_acc.png"))
                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "logging_acc.png"), 0.8):
-                                            attendre_image(os.path.join(
-                                                os.getcwd(), 'images1080', "connected_server.png"), 0.8)
-                                            pyautogui.sleep(3)
                                             print(
                                                 "Page de connexion détectée.")
-                                            pyautogui.press(
-                                                'enter')
+                                            keyboard_controller.press(
+                                                Key.enter)
                                             pyautogui.sleep(1)
                                             pyautogui.write(
                                                 f'/login {mdp}')
-                                            pyautogui.press(
-                                                'enter')
+                                            keyboard_controller.press(
+                                                Key.enter)
                                             pyautogui.sleep(1)
 
-                                            pyautogui.press(
-                                                '1')
-                                            pyautogui.rightClick()
+                                            keyboard.press('1')
+                                            keyboard.release('1')
+                                            pyautogui.sleep(1)
+                                            mouse.click(Button.right, 1)
                                             pyautogui.sleep(1)
                                             attendre_image(os.path.join(
                                                 os.getcwd(), 'images1080', "join_pixelmon.png"), 0.8)
@@ -311,22 +323,24 @@ def main():
                                                 print(
                                                     "Monde Pixelmon détecté.")
                                                 pyautogui.sleep(
-                                                    3)
-                                                pyautogui.press(
-                                                    'enter')
+                                                    10)
+                                                keyboard_controller.press(
+                                                    Key.enter)
                                                 pyautogui.sleep(
                                                     1)
                                                 pyautogui.write(
                                                     '/kit aventurier')
-                                                pyautogui.press(
-                                                    'enter')
+                                                keyboard_controller.press(
+                                                    Key.enter)
                                                 pyautogui.sleep(
                                                     1)
                                                 if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
                                                     mettre_a_jour_status_si_kit_valid(
                                                         donnees, compte)
-                                                    pyautogui.press(
-                                                        'escape')
+                                                    keyboard_controller.press(
+                                                        Key.esc)
+                                                    keyboard_controller.release(
+                                                        Key.esc)
                                                     attendre_image(os.path.join(
                                                         os.getcwd(), 'images1080', "disconnect.png"), 0.8)
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
@@ -339,8 +353,10 @@ def main():
                                                 if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_fail.png"), 0.8):
                                                     mettre_a_jour_status_si_kit_false(
                                                         donnees, compte)
-                                                    pyautogui.press(
-                                                        'escape')
+                                                    keyboard_controller.press(
+                                                        Key.esc)
+                                                    keyboard_controller.release(
+                                                        Key.esc)
                                                     attendre_image(os.path.join(
                                                         os.getcwd(), 'images1080', "disconnect.png"), 0.8)
                                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):

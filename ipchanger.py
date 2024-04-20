@@ -100,23 +100,19 @@ def focus_minecraft():
     """ Met en avant et maximise la fenêtre de Minecraft si elle contient 'Minecraft' dans le titre. """
     try:
         # Affichage des titres pour débogage
-        print("Fenêtres ouvertes:", [w.title for w in gw.getAllWindows()])
-
-        # Récupérer toutes les fenêtres et filtrer celles dont le titre contient 'Minecraft'
         windows = gw.getWindowsWithTitle('Minecraft')
         if windows:
-            # Prendre la première fenêtre qui contient 'Minecraft'
             window = windows[0]
             if window.isMinimized:
                 window.restore()
-            window.maximize()  # Maximise la fenêtre
-            window.activate()  # Met la fenêtre au premier plan
+            window.maximize()
+            window.activate()
             print("Fenêtre Minecraft mise en avant et maximisée.")
         else:
             print("Aucune fenêtre Minecraft trouvée avec le titre spécifié.")
     except Exception as e:
-        print(
-            f"Erreur lors de la mise en avant de la fenêtre Minecraft: {str(e)}")
+        print("Erreur lors de la mise en avant de la fenêtre Minecraft:", str(e))
+
 
 # Utilisation de la fonction
 
@@ -161,7 +157,6 @@ def check_and_connect():
                     f"Adresse IP {current_ip} est dans la blacklist, reconnexion nécessaire...")
                 continue
             add_ip_to_blacklist(current_ip, blacklist)
-
             print(
                 f"Le VPN est maintenant pleinement opérationnel avec l'IP {current_ip}.")
             focus_minecraft()

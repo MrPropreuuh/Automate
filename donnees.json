@@ -9,7 +9,7 @@
             "usernameProxy": "UsernameProxy",
             "mdpProxy": "MdpProxy",
             "status": "error",
-            "today": "false",
+            "today": "true",
             "ivsCheck": "true"
         },
         {
@@ -602,6 +602,6 @@
         }
     ],
     "scriptSchedule": {
-        "date_heure": "2024-04-04 14:19:34"
+        "date_heure": "2024-04-20 04:16:15"
     }
 }
