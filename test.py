@@ -24,23 +24,40 @@ def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
 
     # Si l'image est trouvée, effectuer un clic
     if emplacement:
-        time.sleep(3)
-        # Maintenir la touche Shift
-        keyboard.press(Key.shift)
-
-        # Réaliser un clic de souris à l'emplacement spécifié
         pyautogui.click(emplacement)
-
-        # Relâcher la touche Shift
-        keyboard.release(Key.shift)
         print(
             f"Image trouvée à l'emplacement {emplacement}, un clic a été effectué.")
     else:
         print("Image non trouvée.")
 
 
+def deplacer_souris_autour_zone(region):
+    """
+    Déplace la souris autour des coins d'une région donnée.
+
+    :param region: Tuple contenant les coordonnées de la région (x, y, largeur, hauteur).
+    """
+    x, y, largeur, hauteur = region
+
+    # Calculer les coins de la région
+    coin_haut_gauche = (x, y)
+    coin_haut_droit = (x + largeur, y)
+    coin_bas_gauche = (x, y + hauteur)
+    coin_bas_droit = (x + largeur, y + hauteur)
+
+    # Liste des coins à visiter
+    coins = [coin_haut_gauche, coin_haut_droit,
+             coin_bas_droit, coin_bas_gauche]
+
+    # Boucle pour déplacer la souris à chaque coin
+    for coin in coins:
+        pyautogui.moveTo(coin)
+        print(f"Souris déplacée à {coin}")
+        time.sleep(0.5)  # Attendre 2 secondes à chaque coin
+
+
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-region_recherche = (1030, 700, 500, 250)  # La région où chercher l'image
+region_recherche = (1000, 700, 500, 250)  # La région où chercher l'image
 
 # Passez la région de recherche en tant que paramètre à la fonction
-cliquer_sur_image_zones(chemin_image, 0.8, region_recherche)
+deplacer_souris_autour_zone(region_recherche)
