@@ -84,6 +84,21 @@ def cliquer_sur_image(image_path, seuil):
     return False
 
 
+def attendre_une_des_images(image_paths, seuil=0.8, temps_attente_max=30, intervalle=0.5):
+    debut = time.time()
+    while True:
+        for image_path in image_paths:
+            max_val, max_loc, shape = trouver_image(
+                os.path.join(os.getcwd(), 'images1080', image_path))
+            if max_val is not None and max_val > seuil:
+                print(f"Image {image_path} détectée.")
+                return image_path  # Retourne le chemin de l'image trouvée
+        if time.time() - debut > temps_attente_max:
+            print("Aucune des images n'a été détectée dans le délai imparti.")
+            return None  # Aucune image trouvée dans le temps alloué
+        time.sleep(intervalle)
+
+
 def attendre_image(image_path, seuil=0.8, temps_attente_max=30, intervalle=0.5):
     """
     Attends qu'une image soit détectée à l'écran.
@@ -175,7 +190,7 @@ def main():
                 # Spécifier un seuil différent pour la reconnaissance de l'image "acc_switch.png"
                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "acc_switch.png"), 0.8):
                     print(
-                        f"Changement de compte pour {compte['username']}.")
+                        f"Changement de compte pour {compte['username']}. Bots numéro {compte['id']}.")
                     pyautogui.sleep(1)
                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "search_acc.png"), 0.8):
                         pyautogui.write(compte['username'])
@@ -197,6 +212,8 @@ def main():
                                 # DEBUT DE CHANGEMENT D'IP
                                 print("Changement d'IP en cours...")
                                 run_ip_changer()
+                                cliquer_sur_image(os.path.join(
+                                    os.getcwd(), 'images1080', "open_mc.png"), 0.8)
                                 # FIN DE DE CHANGEMENT D'IP
 
                                 attendre_image(os.path.join(
@@ -211,6 +228,18 @@ def main():
                                         print(
                                             "Rejoindre le serveur.")
                                         pyautogui.sleep(3)
+                                        images_a_surveiller = [
+                                            "register_acc.png", "logging_acc.png"]
+
+                                        image_trouvee = attendre_une_des_images(
+                                            images_a_surveiller, seuil=0.8, temps_attente_max=30, intervalle=0.5)
+                                        if image_trouvee:
+                                            print(
+                                                f"Traitement continu avec l'image détectée : {image_trouvee}")
+                                        else:
+                                            print(
+                                                "Aucune image pertinente n'a été détectée.")
+
                                         # Vérification pour l'enregistrement ou la connexion
                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "register_acc.png"), 0.8):
                                             print(
@@ -239,7 +268,7 @@ def main():
                                                 attendre_image(os.path.join(
                                                     os.getcwd(), 'images1080', "select-starter-confirm.png"), 0.8)
                                                 attendre_image(os.path.join(
-                                                    os.getcwd(), 'images1080', "select_pick.png"), 0.8)
+                                                    os.getcwd(), 'images1080', "starter_pick.png"), 0.8)
                                                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "starter_pick.png"), 0.8):
                                                     print(
                                                         "Choix du starter détecté.")
@@ -298,8 +327,6 @@ def main():
                                                 print(
                                                     "Monde Pixelmon non détecté.")
                                         # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
-                                        attendre_image(os.path.join(
-                                            os.getcwd(), 'images1080', "logging_acc.png"))
                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "logging_acc.png"), 0.8):
                                             print(
                                                 "Page de connexion détectée.")

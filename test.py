@@ -6,7 +6,7 @@ from pynput.keyboard import Controller, Key
 keyboard = Controller()
 mouse = MouseController()
 
-pyautogui.sleep(3)
+
 print(
     "Page d'enregistrement détectée.")
 keyboard.press(Key.enter)
