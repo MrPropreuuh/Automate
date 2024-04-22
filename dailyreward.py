@@ -16,6 +16,7 @@ from pynput.keyboard import Key
 from pynput.keyboard import Controller as KeyboardController
 from pynput.mouse import Controller as MouseController
 from pynput.mouse import Button
+import threading
 
 keyboard_controller = KeyboardController()
 mouse = MouseController()
@@ -57,6 +58,28 @@ def focus_pixelmon_launcher():
     try:
         # Trouver la fenêtre par son titre
         window = gw.getWindowsWithTitle('PixelmonGo - Launcher')[0]
+        if window.isMinimized:  # Vérifie si la fenêtre est minimisée
+            window.restore()  # Restaurer la fenêtre si minimisée
+        window.maximize()  # Maximiser la fenêtre
+        window.activate()  # Mettre la fenêtre au premier plan
+        print("Fenêtre 'PixelmonGo - Launcher' mise en avant et maximisée.")
+    except IndexError:
+        # Gérer le cas où la fenêtre n'est pas trouvée
+        print("La fenêtre 'PixelmonGo - Launcher' n'a pas été trouvée.")
+    except Exception as e:
+        # Gérer d'autres exceptions potentielles
+        print(
+            f"Une erreur est survenue lors de la mise en avant de la fenêtre: {str(e)}")
+
+
+def focus_minecraft_tab():
+    """
+    Cette fonction recherche une fenêtre avec le titre 'PixelmonGo - Launcher' et la met en avant.
+    Si la fenêtre est trouvée, elle est restaurée et maximisée.
+    """
+    try:
+        # Trouver la fenêtre par son titre
+        window = gw.getWindowsWithTitle('Minecraft* 1.16.5')[0]
         if window.isMinimized:  # Vérifie si la fenêtre est minimisée
             window.restore()  # Restaurer la fenêtre si minimisée
         window.maximize()  # Maximiser la fenêtre
@@ -142,7 +165,7 @@ def cliquer_sur_image(image_path, seuil):
     return False
 
 
-def attendre_image(image_path, seuil=0.8, temps_attente_max=30, intervalle=0.5):
+def attendre_image(image_path, seuil=0.8, temps_attente_max=300, intervalle=0.5):
     """
     Attends qu'une image soit détectée à l'écran.
 
@@ -182,13 +205,16 @@ def mettre_a_jour_status_si_kit_valid(donnees, compte):
 
 def daily_reward():
     data = lire_json()
+    mise_a_jour = False
     for compte in data['comptes']:
         if compte['dailyComplete'] == "false":
             if cliquer_sur_image_daily(compte['daily']):
                 compte['dailyComplete'] = "true"
-                # Incrémente daily pour le prochain jour
-                compte['daily'] += 1
+                compte['daily'] += 1  # Incrémente daily pour le prochain jour
+                mise_a_jour = True
                 break  # Arrête après le premier clic réussi
+    if mise_a_jour:
+        ecrire_json(data)  # Sauvegarde les modifications dans le fichier JSON
 
 
 def mettre_a_jour_status_si_kit_false(donnees, compte):
@@ -296,6 +322,25 @@ def cliquer_a_un_point(x, y):
     mouse.click(Button.left)  # Effectue un clic gauche
 
 
+def surveiller_crash():
+    while True:
+        # Remplacez 'chemin_de_crash.png' par le chemin réel vers votre image
+        found = pyautogui.locateOnScreen(
+            'dailysreward/crash.png', confidence=0.8)
+        if found:
+            keyboard_controller.press(Key.alt)
+            keyboard_controller.press(Key.f4)
+
+            # Relâcher Alt + F4
+            keyboard_controller.release(Key.f4)
+            keyboard_controller.release(Key.alt)
+
+            # Petite pause pour éviter de redémarrer immédiatement
+            time.sleep(5)
+            main()  # Recommence la fonction principale
+        time.sleep(5)  # Intervalles de 5 secondes entre les vérifications
+
+
 def main():
     donnees = charger_donnees()
     print("Minecraft 1.16.5 est ouvert. Recherche du menu principal...")
@@ -310,6 +355,8 @@ def main():
         id_compte = compte["id"]
         mdp = compte['motDePasse']
         pyautogui.sleep(1)
+        run_ip_changer()
+        focus_pixelmon_launcher()
         # Spécifier un seuil différent pour la reconnaissance de l'image "acc_switch.png"
         attendre_image(os.path.join(
             os.getcwd(), 'dailysreward', "luncher.png"), 0.8)
@@ -320,15 +367,14 @@ def main():
             keyboard_controller.press(Key.ctrl)
             keyboard_controller.press("a")
             # Relâcher Ctrl + Suppr
-            keyboard_controller.press("a")
+            keyboard_controller.release("a")
             keyboard_controller.release(Key.ctrl)
-            keyboard_controller.release(Key.delete)
+            keyboard_controller.press(Key.delete)
             pyautogui.write(compte['username'])
-            pyautogui.sleep(1)
             cliquer_sur_image(os.path.join(
                 os.getcwd(), 'dailysreward', "play.png"), 0.8)
-            pyautogui.sleep(15)
-            run_ip_changer()
+            pyautogui.sleep(40)
+            focus_minecraft_tab()
             attendre_image(os.path.join(
                 os.getcwd(), 'images1080', "logging_acc.png"), 0.8)
             # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
@@ -372,7 +418,12 @@ def main():
                     pyautogui.sleep(
                         1)
                     daily_reward()
-                    time.sleep(1)
+                    time.sleep(3)
+                    keyboard_controller.press(Key.esc)
+                    time.sleep(3)
+                    cliquer_sur_image(os.path.join(
+                        os.getcwd(), 'dailysreward', "disconnect.png"), 0.8)
+                    time.sleep(10)
                     keyboard_controller.press(Key.alt)
                     keyboard_controller.press(Key.f4)
 
@@ -380,9 +431,15 @@ def main():
                     keyboard_controller.release(Key.f4)
                     keyboard_controller.release(Key.alt)
 
-                    time.sleep(10)
+                    time.sleep(5)
                     focus_pixelmon_launcher()
 
+
+if __name__ == "__main__":
+    # Démarre le thread de surveillance
+    thread = threading.Thread(target=surveiller_crash)
+    thread.daemon = True  # Permet au thread de s'arrêter avec le programme
+    thread.start()
 
 # Associez la touche "P" à la fonction toggle_macro
 keyboard.add_hotkey('p', toggle_macro)

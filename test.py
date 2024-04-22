@@ -27,13 +27,11 @@ def cliquer_sur_image_daily(daily):
 def daily_reward():
     data = lire_json()
     for compte in data['comptes']:
-        if compte['id'] == 1:  # Vérifie si l'ID du compte est 1
-            if compte['dailyComplete'] == "false":
-                if cliquer_sur_image_daily(compte['daily']):
-                    compte['dailyComplete'] = "true"
-                    # Incrémente daily pour le prochain jour
-                    compte['daily'] += 1
-                    break  # Arrête après le premier clic réussi
+        if compte['dailyComplete'] == "false":
+            compte['dailyComplete'] = "true"
+            # Incrémente daily pour le prochain jour
+            compte['daily'] += 1
+            break  # Arrête après le premier clic réussi
     ecrire_json(data)
 
 

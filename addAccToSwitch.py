@@ -2,7 +2,9 @@ import time
 import pyautogui
 import json
 import os
-from time import sleep
+from pynput.mouse import Controller, Button
+
+mouse = Controller()
 
 
 def charger_donnees():
@@ -15,19 +17,18 @@ def cliquer_sur_image(nom_image, attente_apres=0.3, delai_avant_click=0.1, timeo
     chemin_image = os.path.join(os.getcwd(), 'images1080', nom_image)
     debut = time.time()
     while True:
-        position = pyautogui.locateCenterOnScreen(chemin_image, confidence=0.8)
+        position = pyautogui.locateCenterOnScreen(chemin_image, confidence=0.6)
         if position:
-            # Animation du mouvement de la souris
-            pyautogui.moveTo(position, duration=0.1)
-            sleep(delai_avant_click)  # Délai avant de cliquer
-            pyautogui.click()
+            mouse.position = (position[0], position[1])  # Déplace la souris
+            time.sleep(delai_avant_click)  # Délai avant de cliquer
+            mouse.click(Button.left)  # Clic gauche avec pynput
             print(f"Image {nom_image} trouvée et cliquée.")
-            sleep(attente_apres)
+            time.sleep(attente_apres)
             break
         elif time.time() - debut > timeout:
             print(f"Image {nom_image} non trouvée après {timeout} secondes.")
             break
-        sleep(0.5)  # Court délai avant de réessayer
+        time.sleep(0.5)  # Court délai avant de réessayer
 
 
 def main():
