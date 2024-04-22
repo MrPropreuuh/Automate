@@ -18,6 +18,22 @@ keyboard_controller = KeyboardController()
 mouse = MouseController()
 
 
+def deposit():
+    """
+    Cette fonction lance le script externe 'fait_moi_le_script_externe.py'.
+    """
+    try:
+        # Remplacer le chemin si le script n'est pas dans le même dossier que ce script
+        resultat = subprocess.run(
+            ["python", "deposit.py"], check=True, text=True, capture_output=True)
+        print("Le script externe a été exécuté avec succès.")
+        print("Sortie du script :", resultat.stdout)
+    except subprocess.CalledProcessError as e:
+        print("Une erreur est survenue lors de l'exécution du script externe.")
+        print("Code d'erreur :", e.returncode)
+        print("Message d'erreur :", e.stderr)
+
+
 def run_ip_changer():
     """Exécute le script ipchanger.py et attend que le processus se termine."""
     try:
@@ -362,6 +378,7 @@ def main():
                                                 pyautogui.sleep(
                                                     1)
                                                 if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
+                                                    deposit()
                                                     mettre_a_jour_status_si_kit_valid(
                                                         donnees, compte)
                                                     keyboard_controller.press(
