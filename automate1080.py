@@ -381,6 +381,7 @@ def main():
                                                     deposit()
                                                     mettre_a_jour_status_si_kit_valid(
                                                         donnees, compte)
+                                                    time.sleep(3)
                                                     keyboard_controller.press(
                                                         Key.esc)
                                                     keyboard_controller.release(
