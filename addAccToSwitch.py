@@ -8,7 +8,7 @@ mouse = Controller()
 
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees2.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees["comptes"]
 
@@ -17,7 +17,7 @@ def cliquer_sur_image(nom_image, attente_apres=0.3, delai_avant_click=0.1, timeo
     chemin_image = os.path.join(os.getcwd(), 'images1080', nom_image)
     debut = time.time()
     while True:
-        position = pyautogui.locateCenterOnScreen(chemin_image, confidence=0.6)
+        position = pyautogui.locateCenterOnScreen(chemin_image, confidence=0.8)
         if position:
             mouse.position = (position[0], position[1])  # Déplace la souris
             time.sleep(delai_avant_click)  # Délai avant de cliquer

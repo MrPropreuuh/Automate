@@ -46,7 +46,7 @@ def run_ip_changer():
 
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees2.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
@@ -79,7 +79,7 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 
-def sauvegarder_donnees(donnees, nom_fichier='donnees.json'):
+def sauvegarder_donnees(donnees, nom_fichier='donnees2.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
@@ -88,9 +88,10 @@ def cliquer_sur_image(image_path, seuil):
     max_val, max_loc, shape = trouver_image(image_path)
     if max_val > seuil:  # Utilisation du seuil spécifié
         # Calcul du centre de l'image détectée
+        # Ajout de l'offset de l'écran secondaire
         centre_x = max_loc[0] + shape[1] / 2
         centre_y = max_loc[1] + shape[0] / 2
-        # Positionne la souris au centre de l'image détectée
+        # Positionne la souris au centre de l'image détectée en tenant compte de l'écran
         pyautogui.moveTo(centre_x, centre_y)
         # Attend 0.1 seconde
         time.sleep(0.1)
@@ -228,8 +229,7 @@ def main():
                                 # DEBUT DE CHANGEMENT D'IP
                                 print("Changement d'IP en cours...")
                                 run_ip_changer()
-                                cliquer_sur_image(os.path.join(
-                                    os.getcwd(), 'images1080', "open_mc.png"), 0.8)
+                                time.sleep(3)
                                 # FIN DE DE CHANGEMENT D'IP
 
                                 attendre_image(os.path.join(
@@ -343,7 +343,7 @@ def main():
                                                 print(
                                                     "Monde Pixelmon non détecté.")
                                         # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
-                                        if image_detectee(os.path.join(os.getcwd(), 'images1080', "logging_acc.png"), 0.8):
+                                        if image_detectee(os.path.join(os.getcwd(), 'images1080', "logging_acc.png"), 0.9):
                                             print(
                                                 "Page de connexion détectée.")
                                             keyboard_controller.press(
