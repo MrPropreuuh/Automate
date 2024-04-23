@@ -101,23 +101,28 @@ def main():
     keyboard_controller.release(
         Key.enter)
     pyautogui.sleep(
-        12)
+        7)
     if verifier_presence_image(chemin_image):
-        print("Image trouvée, aucune action nécessaire.")
-    else:
-        print("Image non trouvée, action alternative en cours.")
-        time.sleep(60)  # Attend 60 secondes avant de continuer
-        # Simule la pression de la touche Enter
-        keyboard_controller.press(Key.enter)
-        keyboard_controller.release(Key.enter)  # Relâche la touche Enter
-        pyautogui.sleep(1)  # Pause d'une seconde
-        pyautogui.write('/home rarecandy')  # Écrit la commande
-        time.sleep(1)  # Attend une seconde avant de continuer
-        # Simule de nouveau la pression de la touche Enter
-        keyboard_controller.press(Key.enter)
-        keyboard_controller.release(Key.enter)  # Relâche la touche Enter
+        print(
+            "Image trouvée, clic en cours.")
+        time.sleep(
+            60)
+        keyboard_controller.press(
+            Key.enter)
+        keyboard_controller.release(
+            Key.enter)
         pyautogui.sleep(
-            15)
+            1)
+        pyautogui.write(
+            '/home rarecandy')
+        time.sleep(
+            1)
+        keyboard_controller.press(
+            Key.enter)
+        keyboard_controller.release(
+            Key.enter)
+    pyautogui.sleep(
+        15)
     mouse.click(
         Button.right, 1)
     pyautogui.sleep(1)

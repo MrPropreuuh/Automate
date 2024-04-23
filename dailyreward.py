@@ -203,18 +203,17 @@ def mettre_a_jour_status_si_kit_valid(donnees, compte):
     sauvegarder_donnees(donnees)
 
 
-def daily_reward():
-    data = lire_json()
+def daily_reward(donnees):
+    donnees = lire_json()
     mise_a_jour = False
-    for compte in data['comptes']:
-        if compte['dailyComplete'] == "false":
-            if cliquer_sur_image_daily(compte['daily']):
-                compte['dailyComplete'] = "true"
-                compte['daily'] += 1  # Incrémente daily pour le prochain jour
-                mise_a_jour = True
-                break  # Arrête après le premier clic réussi
+    for compte in donnees["comptes"]:
+        compte['dailyComplete'] = "true"
+        compte['daily'] += 1  # Incrémente daily pour le prochain jour
+        mise_a_jour = True
+        break  # Arrête après le premier clic réussi
     if mise_a_jour:
-        ecrire_json(data)  # Sauvegarde les modifications dans le fichier JSON
+        # Sauvegarde les modifications dans le fichier JSON
+        ecrire_json(donnees)
 
 
 def mettre_a_jour_status_si_kit_false(donnees, compte):
@@ -401,29 +400,14 @@ def main():
                 if cliquer_sur_image(os.path.join(os.getcwd(), 'dailysreward', "join.png"), 0.8):
                     print(
                         "Monde Pixelmon détecté.")
-                    pyautogui.sleep(
-                        10)
-                    keyboard_controller.press(
-                        't')
-                    keyboard_controller.release(
-                        't')
-                    pyautogui.sleep(
-                        1)
-                    pyautogui.write(
-                        '/dailyreward')
-                    keyboard_controller.press(
-                        Key.enter)
-                    keyboard_controller.release(
-                        Key.enter)
-                    pyautogui.sleep(
-                        1)
-                    daily_reward()
+                    time.sleep(10)
+                    daily_reward(donnees)
                     time.sleep(3)
                     keyboard_controller.press(Key.esc)
                     time.sleep(3)
                     cliquer_sur_image(os.path.join(
                         os.getcwd(), 'dailysreward', "disconnect.png"), 0.8)
-                    time.sleep(10)
+                    time.sleep(3)
                     keyboard_controller.press(Key.alt)
                     keyboard_controller.press(Key.f4)
 
