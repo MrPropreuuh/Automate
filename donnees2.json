@@ -40,7 +40,7 @@
             "today": "true",
             "ivsCheck": "false",
             "daily": 1,
-            "dailyComplete": "false"
+            "dailyComplete": "true"
         },
         {
             "id": 4,

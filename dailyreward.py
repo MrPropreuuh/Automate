@@ -42,7 +42,7 @@ def cliquer_sur_image_daily(daily):
     time.sleep(1)  # Attendre 1 seconde avant de cliquer sur l'image
     dossier_images = "dailysreward/"
     nom_fichier = f"{dossier_images}day{daily}.png"
-    position = pyautogui.locateCenterOnScreen(nom_fichier, confidence=0.8)
+    position = pyautogui.locateCenterOnScreen(nom_fichier, confidence=0.6)
     if position:
         pyautogui.click(position)
         print(f"Image {nom_fichier} trouvée et cliquée.")
@@ -57,7 +57,7 @@ def focus_pixelmon_launcher():
     """
     try:
         # Trouver la fenêtre par son titre
-        window = gw.getWindowsWithTitle('PixelmonGo - Launcher')[0]
+        window = gw.getWindowsWithTitle('PixelmonGo')[0]
         if window.isMinimized:  # Vérifie si la fenêtre est minimisée
             window.restore()  # Restaurer la fenêtre si minimisée
         window.maximize()  # Maximiser la fenêtre
@@ -266,7 +266,7 @@ def envoyer_tpa_et_verifier_image():
 
 
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-region_recherche = (1030, 700, 500, 250)  # La région où chercher l'image
+region_recherche = (710, 500, 500, 250)
 
 
 def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
@@ -323,25 +323,6 @@ def cliquer_a_un_point(x, y):
     mouse.click(Button.left)  # Effectue un clic gauche
 
 
-def surveiller_crash():
-    while True:
-        # Remplacez 'chemin_de_crash.png' par le chemin réel vers votre image
-        found = pyautogui.locateOnScreen(
-            'dailysreward/crash.png', confidence=0.8)
-        if found:
-            keyboard_controller.press(Key.alt)
-            keyboard_controller.press(Key.f4)
-
-            # Relâcher Alt + F4
-            keyboard_controller.release(Key.f4)
-            keyboard_controller.release(Key.alt)
-
-            # Petite pause pour éviter de redémarrer immédiatement
-            time.sleep(5)
-            main()  # Recommence la fonction principale
-        time.sleep(5)  # Intervalles de 5 secondes entre les vérifications
-
-
 def main():
     donnees = charger_donnees()
     print("Minecraft 1.16.5 est ouvert. Recherche du menu principal...")
@@ -362,15 +343,19 @@ def main():
         attendre_image(os.path.join(
             os.getcwd(), 'dailysreward', "luncher.png"), 0.8)
         if cliquer_sur_image(os.path.join(os.getcwd(), 'dailysreward', "luncher.png"), 0.8):
-            cliquer_a_un_point(800, 720)
+            
+            cliquer_a_un_point(600, 560)
             pyautogui.sleep(1)
             # Appuyer sur Ctrl + Suppr
             keyboard_controller.press(Key.ctrl)
             keyboard_controller.press("a")
+            time.sleep(0.1)
             # Relâcher Ctrl + Suppr
             keyboard_controller.release("a")
             keyboard_controller.release(Key.ctrl)
             keyboard_controller.press(Key.delete)
+            time.sleep(0.1)
+
             pyautogui.write(compte['username'])
             cliquer_sur_image(os.path.join(
                 os.getcwd(), 'dailysreward', "play.png"), 0.8)
@@ -419,14 +404,6 @@ def main():
 
                     time.sleep(5)
                     focus_pixelmon_launcher()
-
-
-print("Script terminé.")
-if __name__ == "__main__":
-    # Démarre le thread de surveillance
-    thread = threading.Thread(target=surveiller_crash)
-    thread.daemon = True  # Permet au thread de s'arrêter avec le programme
-    thread.start()
 
 # Associez la touche "P" à la fonction toggle_macro
 keyboard.add_hotkey('p', toggle_macro)

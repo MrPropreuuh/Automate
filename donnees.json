@@ -11,8 +11,9 @@
             "status": "error",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 16,
-            "dailyComplete": "true"
+            "daily": 3,
+            "dailyComplete": "true",
+            "deposit": "true"
         },
         {
             "id": 2,
@@ -26,7 +27,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 3,
@@ -40,7 +42,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 4,
@@ -54,7 +57,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 5,
@@ -68,7 +72,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 6,
@@ -82,7 +87,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true",
+            "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -97,7 +103,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true",
+            "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -112,7 +119,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 9,
@@ -126,7 +134,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 10,
@@ -140,7 +149,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 11,
@@ -154,7 +164,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 12,
@@ -168,7 +179,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 13,
@@ -181,8 +193,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 14,
@@ -195,8 +208,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 15,
@@ -209,8 +223,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 16,
@@ -224,7 +239,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 17,
@@ -237,8 +253,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 18,
@@ -251,8 +268,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 19,
@@ -265,8 +283,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 20,
@@ -279,8 +298,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 21,
@@ -293,8 +313,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 22,
@@ -307,8 +328,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 23,
@@ -321,8 +343,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 24,
@@ -335,8 +358,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -351,7 +375,8 @@
             "today": "true",
             "ivsCheck": "true",
             "daily": 3,
-            "dailyComplete": "true"
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 26,
@@ -364,8 +389,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -379,8 +405,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 28,
@@ -393,8 +420,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 29,
@@ -407,8 +435,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 30,
@@ -421,8 +450,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 31,
@@ -435,8 +465,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -450,8 +481,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 33,
@@ -464,8 +496,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 34,
@@ -478,8 +511,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 35,
@@ -492,8 +526,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 36,
@@ -506,8 +541,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 37,
@@ -520,8 +556,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -535,8 +572,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 39,
@@ -549,8 +587,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 40,
@@ -563,8 +602,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 41,
@@ -577,8 +617,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 42,
@@ -591,8 +632,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 43,
@@ -605,8 +647,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 44,
@@ -619,8 +662,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -634,8 +678,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 46,
@@ -648,8 +693,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 47,
@@ -662,8 +708,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 48,
@@ -676,8 +723,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
+            "daily": 3,
             "dailyComplete": "false",
+            "deposit": "true",
             "tp": ""
         },
         {
@@ -691,8 +739,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         },
         {
             "id": 50,
@@ -705,8 +754,9 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false"
+            "daily": 3,
+            "dailyComplete": "false",
+            "deposit": "true"
         }
     ],
     "scriptSchedule": {
