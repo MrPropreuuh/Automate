@@ -421,6 +421,7 @@ def main():
                     focus_pixelmon_launcher()
 
 
+print("Script terminé.")
 if __name__ == "__main__":
     # Démarre le thread de surveillance
     thread = threading.Thread(target=surveiller_crash)
