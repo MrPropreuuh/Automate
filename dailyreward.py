@@ -207,10 +207,12 @@ def daily_reward(donnees):
     donnees = lire_json()
     mise_a_jour = False
     for compte in donnees["comptes"]:
-        compte['dailyComplete'] = "true"
-        compte['daily'] += 1  # Incrémente daily pour le prochain jour
-        mise_a_jour = True
-        break  # Arrête après le premier clic réussi
+        if compte['dailyComplete'] == "false":
+            if cliquer_sur_image_daily(compte['daily']):
+                compte['dailyComplete'] = "true"
+                compte['daily'] += 1  # Incrémente daily pour le prochain jour
+                mise_a_jour = True
+                break  # Arrête après le premier clic réussi
     if mise_a_jour:
         # Sauvegarde les modifications dans le fichier JSON
         ecrire_json(donnees)

@@ -11,7 +11,7 @@
             "status": "error",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 14,
+            "daily": 16,
             "dailyComplete": "true"
         },
         {
@@ -96,8 +96,8 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 2,
-            "dailyComplete": "false",
+            "daily": 3,
+            "dailyComplete": "true",
             "tp": ""
         },
         {
@@ -181,8 +181,8 @@
             "status": "success",
             "today": "true",
             "ivsCheck": "true",
-            "daily": 3,
-            "dailyComplete": "true"
+            "daily": 2,
+            "dailyComplete": "false"
         },
         {
             "id": 14,
