@@ -44,6 +44,9 @@ def cliquer_sur_image_daily(daily):
     nom_fichier = f"{dossier_images}day{daily}.png"
     position = pyautogui.locateCenterOnScreen(nom_fichier, confidence=0.6)
     if position:
+        time.sleep(2)
+        pyautogui.moveTo(position)
+        time.sleep(1)
         pyautogui.click(position)
         print(f"Image {nom_fichier} trouvée et cliquée.")
         return True

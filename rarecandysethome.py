@@ -19,7 +19,7 @@ mouse = MouseController()
 
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees2.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
@@ -43,7 +43,7 @@ def mettre_a_jour_status_check(donnees, compte_username):
             break  # Sortie de la boucle une fois le compte trouvé et mis à jour
 
     # Sauvegarde des données mises à jour dans le fichier JSON
-    sauvegarder_donnees(donnees, 'donnees.json')
+    sauvegarder_donnees(donnees, 'donnees2.json')
 
 
 def enregistrer_script_schedule(donnees):
@@ -74,18 +74,18 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees2.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
 
 def lire_json():
-    with open('donnees.json', 'r', encoding='utf-8') as fichier:
+    with open('donnees2.json', 'r', encoding='utf-8') as fichier:
         return json.load(fichier)
 
 
 def ecrire_json(data):
-    with open('donnees.json', 'w', encoding='utf-8') as fichier:
+    with open('donnees2.json', 'w', encoding='utf-8') as fichier:
         json.dump(data, fichier, indent=4)
 
 
@@ -101,7 +101,7 @@ def daily_reward(donnees):
         # Sauvegarde les modifications dans le fichier JSON
         ecrire_json(donnees)
 
-def sauvegarder_donnees(donnees, nom_fichier='donnees.json'):
+def sauvegarder_donnees(donnees, nom_fichier='donnees2.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
@@ -235,9 +235,31 @@ def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
     except Exception as e:
         # Gérer l'exception si nécessaire (optionnel)
         print(f"Une erreur s'est produite: {e}")
-
-
 macro_active = False
+def disconnect():
+    keyboard_controller.press(Key.esc)
+    keyboard_controller.release(Key.esc)
+    attendre_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8)
+    if cliquer_sur_image(os.path.join(
+        os.getcwd(), 'images1080', "disconnect.png"), 0.8):
+                print(
+                    "Déconnexion.")
+                pyautogui.sleep(
+                            3)
+                cliquer_sur_image(os.path.join(
+                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
+            
+def reconnect():
+    if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "menu.png"), 0.5):
+        time.sleep(1)
+        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "multiplayer.png"), 0.8)
+        time.sleep(1)
+        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "direct_conn.png"), 0.8)
+        time.sleep(1)
+        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join.png"), 0.8)
+        time.sleep(10)
+
+
 
 
 def stop_macro():
@@ -343,6 +365,15 @@ def main():
                                                         "Monde Pixelmon détecté.")
                                                     pyautogui.sleep(
                                                         15)
+                                                    keyboard_controller.press(
+                                                        "w")
+                                                    time.sleep(2)
+                                                    keyboard_controller.release(
+                                                        "w")
+                                                    
+                                                    # disconnect()
+                                                    # reconnect()
+                                                    time.sleep(4)
                                                     # Demande de téléportation en boucle
                                                     envoyer_tpa_et_verifier_image()
                                                     print(

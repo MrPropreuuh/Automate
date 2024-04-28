@@ -100,7 +100,7 @@ def focus_minecraft():
     """ Met en avant et maximise la fenêtre de Minecraft si elle contient 'Minecraft' dans le titre. """
     try:
         # Affichage des titres pour débogage
-        windows = gw.getWindowsWithTitle('Minecraft*')
+        windows = gw.getWindowsWithTitle('Minecraft')
         if windows:
             window = windows[0]
             if window.isMinimized:

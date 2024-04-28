@@ -33,7 +33,7 @@ def cliquer_sur_image(nom_image, attente_apres=0.3, delai_avant_click=0.1, timeo
 
 def main():
     comptes = charger_donnees()
-
+    time.sleep(2)
     for compte in comptes:
         cliquer_sur_image("ajout_account_auto.png")
         cliquer_sur_image("blank.png")
