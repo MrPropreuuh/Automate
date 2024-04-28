@@ -269,7 +269,8 @@ def envoyer_tpa_et_verifier_image():
 
 
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-region_recherche = (710, 500, 500, 250)
+region_recherche = (710, 500, 500, 250)  # VERSION PROTABLE
+region_recherche_bureau = (1030, 690, 500, 250)  #
 
 
 def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
@@ -332,7 +333,7 @@ def main():
     # Spécifier un seuil pour la reconnaissance de l'image "menu.png"
     print("Menu Minecraft détecté. Début du script...")
 
-    for compte in donnees["comptes"][:50]:
+    for compte in donnees["comptes"][:100]:
         if compte["dailyComplete"] == "true":
             print(
                 f"{compte['username']} a déja été checker.")
@@ -346,8 +347,10 @@ def main():
         attendre_image(os.path.join(
             os.getcwd(), 'dailysreward', "luncher.png"), 0.8)
         if cliquer_sur_image(os.path.join(os.getcwd(), 'dailysreward', "luncher.png"), 0.8):
-            
-            cliquer_a_un_point(600, 560)
+
+            # cliquer_a_un_point(600, 560)  # VERSION PORTABLE
+            cliquer_a_un_point(700, 750)  # VERSION BUREAU
+
             pyautogui.sleep(1)
             # Appuyer sur Ctrl + Suppr
             keyboard_controller.press(Key.ctrl)
@@ -407,6 +410,7 @@ def main():
 
                     time.sleep(5)
                     focus_pixelmon_launcher()
+
 
 # Associez la touche "P" à la fonction toggle_macro
 keyboard.add_hotkey('p', toggle_macro)
