@@ -19,7 +19,7 @@ mouse = MouseController()
 
 
 def charger_donnees():
-    with open('donnees2.json', 'r') as fichier:
+    with open('donnees.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
@@ -43,7 +43,7 @@ def mettre_a_jour_status_check(donnees, compte_username):
             break  # Sortie de la boucle une fois le compte trouvé et mis à jour
 
     # Sauvegarde des données mises à jour dans le fichier JSON
-    sauvegarder_donnees(donnees, 'donnees2.json')
+    sauvegarder_donnees(donnees, 'donnees.json')
 
 
 def enregistrer_script_schedule(donnees):
@@ -74,18 +74,18 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 def charger_donnees():
-    with open('donnees2.json', 'r') as fichier:
+    with open('donnees.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
 
 def lire_json():
-    with open('donnees2.json', 'r', encoding='utf-8') as fichier:
+    with open('donnees.json', 'r', encoding='utf-8') as fichier:
         return json.load(fichier)
 
 
 def ecrire_json(data):
-    with open('donnees2.json', 'w', encoding='utf-8') as fichier:
+    with open('donnees.json', 'w', encoding='utf-8') as fichier:
         json.dump(data, fichier, indent=4)
 
 
@@ -266,7 +266,7 @@ def main():
             print("Menu Minecraft détecté. Début du script...")
             pyautogui.sleep(2)
 
-            for compte in donnees["comptes"][:50]:
+            for compte in donnees["comptes"][:100]:
                 if compte["deposit"] == "true":
                     print(
                         f"{compte['username']} a déja été checker.")

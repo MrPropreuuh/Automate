@@ -8,7 +8,7 @@ mouse = Controller()
 
 
 def charger_donnees():
-    with open('donnees2.json', 'r') as fichier:
+    with open('donnees.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees["comptes"]
 

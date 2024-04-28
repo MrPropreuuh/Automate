@@ -19,12 +19,13 @@ def generer_mot_de_passe():
 
 
 def verifier_et_creer_donnees():
-    mots = ["Crys", "Nebul", "Vorte", "Shado", "Quant", "Glitz", "Echor", "Flame", "Nexus", "Glyph",
-            "Mysto", "Rifte", "Zenit", "Abyss", "Pulse", "Spect", "Tides", "Orbit", "Drift", "Archa",
-            "Dusky", "Frost", "Blaze", "Phant", "Sages", "Whisp", "Zephy", "Ember", "Cindr", "Toren",
-            "Vivid", "Voidy", "Mythi", "Bligh", "Bloom", "Forge", "Gales", "Haven", "Lumen", "Maels",
-            "Peaks", "Radia", "Surge", "Tempe", "Vextr", "Wilde", "Zenon", "Alpha", "Omega"]
-    suffixes = ["War", "Magi", "Rogu", "Knit", "Hunt", "Prie", "Sorc", "Pala"]
+    mots = ["Sonic", "Shadow", "Knuckl", "Tails", "Cream", "Rouge", "Omega", "Amy", "Silver", "Blaze",
+             "Metal", "Vector", "Charm", "Espio", "Big", "Mighty", "Ray", "Marine", "Jet", "Wave",
+             "Storm", "Bark", "Bean", "Fang", "Scourge", "Rotor", "Antoine", "Bunnie", "Rotor", "Sally",
+             "Nicole", "Snively", "Breezie", "Naugus", "Geoffrey", "Julie-Su", "Lien-Da", "Shard", "Lara-Su",
+             "Saffron", "Dulcy", "Lupe", "Sonia", "Manik", "Aleena", "Jules", "Bernadette", "King"]
+    suffixes = ["Hero", "Vill", "Dark", "Chao", "Garde", "Giant", "Plant", "Flower"]
+
 
     donnees_existantes = charger_donnees()
     pseudos_existants = [compte["username"]

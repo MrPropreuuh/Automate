@@ -228,8 +228,8 @@ def main():
 
                                 # DEBUT DE CHANGEMENT D'IP
                                 print("Changement d'IP en cours...")
-                                run_ip_changer()
-                                time.sleep(3)
+                                # run_ip_changer()
+                                # time.sleep(3)
                                 # FIN DE DE CHANGEMENT D'IP
 
                                 attendre_image(os.path.join(
@@ -306,12 +306,30 @@ def main():
                                                         pyautogui.sleep(
                                                             1)
                                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
+                                                            keyboard_controller.press(
+                                                            Key.enter)
+                                                            pyautogui.sleep(
+                                                                1)
+                                                            pyautogui.write(
+                                                                '/tpa QwiaLite')
+                                                            keyboard_controller.press(
+                                                                Key.enter)
+                                                            pyautogui.sleep(15)
+                                                            keyboard_controller.press(
+                                                            Key.enter)
+                                                            pyautogui.sleep(
+                                                                1)
+                                                            pyautogui.write(
+                                                                '/home rarecandy')
+                                                            keyboard_controller.press(
+                                                                Key.enter)
                                                             mettre_a_jour_status_si_kit_valid(
                                                                 donnees, compte)
                                                             keyboard_controller.press(
                                                                 Key.esc)
                                                             keyboard_controller.release(
                                                                 Key.esc)
+                                                            
                                                             attendre_image(os.path.join(
                                                                 os.getcwd(), 'images1080', "disconnect.png"), 0.8)
                                                             if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
