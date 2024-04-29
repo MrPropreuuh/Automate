@@ -32,7 +32,7 @@ def verifier_et_creer_donnees():
                          for compte in donnees_existantes["comptes"]]
 
     pseudos_supplementaires = []
-    while len(pseudos_supplementaires) < 50:
+    while len(pseudos_supplementaires) < 30:
         mot = random.choice(mots)
         suffixe = random.choice(suffixes)
         numero = random.randint(10, 999)

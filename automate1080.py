@@ -228,8 +228,8 @@ def main():
 
                                 # DEBUT DE CHANGEMENT D'IP
                                 print("Changement d'IP en cours...")
-                                # run_ip_changer()
-                                # time.sleep(3)
+                                run_ip_changer()
+                                time.sleep(3)
                                 # FIN DE DE CHANGEMENT D'IP
 
                                 attendre_image(os.path.join(
@@ -295,16 +295,31 @@ def main():
                                                             "Validation du starter détectée.")
                                                         pyautogui.sleep(
                                                             10)
+                                                        # keyboard_controller.press(
+                                                        #     Key.enter)
+                                                        # pyautogui.sleep(
+                                                        #     1)
+                                                        # pyautogui.write(
+                                                        #     '/kit aventurier')
+                                                        # keyboard_controller.press(
+                                                        #     Key.enter)
+                                                        # pyautogui.sleep(
+                                                        #     1)
                                                         keyboard_controller.press(
-                                                            Key.enter)
-                                                        pyautogui.sleep(
-                                                            1)
-                                                        pyautogui.write(
-                                                            '/kit aventurier')
-                                                        keyboard_controller.press(
-                                                            Key.enter)
-                                                        pyautogui.sleep(
-                                                            1)
+                                                                Key.esc)
+                                                        keyboard_controller.release(
+                                                                Key.esc)
+                                                            
+                                                        attendre_image(os.path.join(
+                                                                os.getcwd(), 'images1080', "disconnect.png"), 0.8)
+                                                        if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
+                                                                print(
+                                                                    "Déconnexion.")
+                                                                attendre_image(os.path.join(
+                                                                    os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
+                                                                cliquer_sur_image(os.path.join(
+                                                                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
+                                                                
                                                         if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
                                                             keyboard_controller.press(
                                                             Key.enter)
@@ -325,6 +340,7 @@ def main():
                                                                 Key.enter)
                                                             mettre_a_jour_status_si_kit_valid(
                                                                 donnees, compte)
+                                                            time
                                                             keyboard_controller.press(
                                                                 Key.esc)
                                                             keyboard_controller.release(
