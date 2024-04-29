@@ -394,6 +394,14 @@ def main():
                     print(
                         "Monde Pixelmon détecté.")
                     time.sleep(10)
+                    keyboard_controller.press(
+                        't')
+                    pyautogui.sleep(1)
+                    pyautogui.write(
+                        f'/dailyreward')
+                    keyboard_controller.press(
+                        Key.enter)
+                    pyautogui.sleep(1)
                     daily_reward(donnees)
                     time.sleep(3)
                     keyboard_controller.press(Key.esc)
