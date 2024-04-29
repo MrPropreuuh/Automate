@@ -348,8 +348,8 @@ def main():
             os.getcwd(), 'dailysreward', "luncher.png"), 0.8)
         if cliquer_sur_image(os.path.join(os.getcwd(), 'dailysreward', "luncher.png"), 0.8):
 
-            # cliquer_a_un_point(600, 560)  # VERSION PORTABLE
-            cliquer_a_un_point(700, 750)  # VERSION BUREAU
+            cliquer_a_un_point(600, 560)  # VERSION PORTABLE
+            # cliquer_a_un_point(700, 750)  # VERSION BUREAU
 
             pyautogui.sleep(1)
             # Appuyer sur Ctrl + Suppr
