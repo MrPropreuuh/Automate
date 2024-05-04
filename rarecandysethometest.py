@@ -19,7 +19,7 @@ mouse = MouseController()
 
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees3.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
@@ -43,7 +43,7 @@ def mettre_a_jour_status_check(donnees, compte_username):
             break  # Sortie de la boucle une fois le compte trouvé et mis à jour
 
     # Sauvegarde des données mises à jour dans le fichier JSON
-    sauvegarder_donnees(donnees, 'donnees.json')
+    sauvegarder_donnees(donnees, 'donnees3.json')
 
 
 def enregistrer_script_schedule(donnees):
@@ -74,18 +74,18 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees3.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
 
 def lire_json():
-    with open('donnees.json', 'r', encoding='utf-8') as fichier:
+    with open('donnees3.json', 'r', encoding='utf-8') as fichier:
         return json.load(fichier)
 
 
 def ecrire_json(data):
-    with open('donnees.json', 'w', encoding='utf-8') as fichier:
+    with open('donnees3.json', 'w', encoding='utf-8') as fichier:
         json.dump(data, fichier, indent=4)
 
 
@@ -101,7 +101,7 @@ def daily_reward(donnees):
         # Sauvegarde les modifications dans le fichier JSON
         ecrire_json(donnees)
 
-def sauvegarder_donnees(donnees, nom_fichier='donnees.json'):
+def sauvegarder_donnees(donnees, nom_fichier='donnees3.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
@@ -190,7 +190,7 @@ def envoyer_tpa_et_verifier_image():
         keyboard_controller.press(Key.enter)
         keyboard_controller.release(Key.enter)
         time.sleep(1)
-        pyautogui.write('/tpa Uruma')
+        pyautogui.write('/tpa ShadowOfEvil')
         keyboard_controller.press(Key.enter)
         keyboard_controller.release(Key.enter)
 
@@ -319,16 +319,16 @@ def main():
                                 # Cliquer sur l'image "multiplayer.png" pour accéder au menu multijoueur
                                 if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "multiplayer.png"), 0.8):
                                     print("Accès au menu multijoueur.")
-                                    pyautogui.sleep(1)
+                                    pyautogui.sleep(0.5
+                                    )
 
                                     # CHANGEMENT D'IP
-                                    print("Changement d'IP en cours...")
-                                    run_ip_changer()
+                                    # print("Changement d'IP en cours...")
+                                    # run_ip_changer()
 
                                     attendre_image(os.path.join(
                                         os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
                                     print("Retour au multiplayer.")
-                                    pyautogui.sleep(2)
                                     if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "direct_conn.png"), 0.8):
                                         print(
                                             "Appuie sur Direct join.")

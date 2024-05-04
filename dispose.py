@@ -39,7 +39,7 @@ def mettre_a_jour_status_check(donnees, compte_username):
     # Trouver le compte dans les données chargées
     for compte in donnees["comptes"]:
         if compte["username"] == compte_username:
-            compte["deposit"] = "true"
+            compte["dispose"] = "true"
             break  # Sortie de la boucle une fois le compte trouvé et mis à jour
 
     # Sauvegarde des données mises à jour dans le fichier JSON
@@ -93,8 +93,8 @@ def daily_reward(donnees):
     donnees = lire_json()
     mise_a_jour = False
     for compte in donnees["comptes"]:
-        if compte['deposit'] == "false":
-                compte['deposit'] = "true"
+        if compte['dispose'] == "false":
+                compte['dispose'] = "true"
                 mise_a_jour = True
                 break  # Arrête après le premier clic réussi
     if mise_a_jour:
@@ -195,7 +195,7 @@ def envoyer_tpa_et_verifier_image():
         keyboard_controller.release(Key.enter)
 
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-chemin_image_thunder = os.path.join(os.getcwd(), 'images1080', "thunder.png")
+chemin_image_thunder = os.path.join(os.getcwd(), 'images1080', "key.png")
 region_recherche = (710, 500, 500, 250)  # La région où chercher l'image
 
 
@@ -235,31 +235,9 @@ def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
     except Exception as e:
         # Gérer l'exception si nécessaire (optionnel)
         print(f"Une erreur s'est produite: {e}")
+
+
 macro_active = False
-def disconnect():
-    keyboard_controller.press(Key.esc)
-    keyboard_controller.release(Key.esc)
-    attendre_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-    if cliquer_sur_image(os.path.join(
-        os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                print(
-                    "Déconnexion.")
-                pyautogui.sleep(
-                            3)
-                cliquer_sur_image(os.path.join(
-                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
-            
-def reconnect():
-    if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "menu.png"), 0.5):
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "multiplayer.png"), 0.8)
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "direct_conn.png"), 0.8)
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join.png"), 0.8)
-        time.sleep(10)
-
-
 
 
 def stop_macro():
@@ -267,6 +245,7 @@ def stop_macro():
     macro_active = False
     print("Arrêt de la macro...")
 
+region_generale = (700, 570, 550, 300)
 
 def toggle_macro():
     global macro_active
@@ -279,6 +258,48 @@ def toggle_macro():
         # Ici, vous pouvez ajouter un code pour arrêter proprement votre macro si nécessaire
 
 
+import pyautogui
+from pynput.keyboard import Key, Controller as KeyboardController
+import time
+import os
+
+keyboard_controller = KeyboardController()
+
+def cliquer_sur_images_dossier(dossier='dispose', seuil=0.5, region=None, position_apres_clic=(300, 300)):
+    """
+    Cherche successivement plusieurs images dans un dossier spécifié sur l'écran, effectue un clic shifté sur chacune d'elles tant qu'elles sont trouvées, puis déplace la souris à une position spécifiée. Continue à chercher jusqu'à ce qu'aucune image ne soit plus trouvée dans la zone.
+
+    :param dossier: Chemin du dossier contenant les images à rechercher.
+    :param seuil: Seuil de correspondance pour la recherche d'images.
+    :param region: Tuple définissant la région de recherche (x, y, largeur, hauteur).
+    :param position_apres_clic: Tuple contenant les coordonnées (x, y) où déplacer la souris après chaque clic.
+    """
+    images = ["axe.png", "hoe.png", "pb.png", "pick.png", "sb.png", "shov.png"]
+    images_paths = [os.path.join(dossier, img) for img in images]
+
+    for image_path in images_paths:
+        while True:  # Ajout d'une boucle while pour continuer à chercher l'image
+            emplacement = pyautogui.locateCenterOnScreen(image_path, confidence=seuil, region=region)
+            if emplacement:
+                # Si l'image est trouvée, effectuer un clic shifté
+                keyboard_controller.press(Key.shift)
+                pyautogui.moveTo(emplacement)
+                pyautogui.click()
+                keyboard_controller.release(Key.shift)
+                print(f"Image trouvée à l'emplacement {emplacement}, un clic a été effectué.")
+
+                # Déplacer la souris à la position spécifiée après le clic
+                pyautogui.moveTo(position_apres_clic, duration=0.1)
+                print(f"Souris déplacée à la position {position_apres_clic} après le clic.")
+                  # Un court délai avant de chercher à nouveau la même image
+            else:
+                print(f"Image {image_path} non trouvée, passage à l'image suivante.")
+                break  # Sortie de la boucle while si l'image n'est plus trouvée
+
+
+
+
+
 def main():
     donnees = charger_donnees()
     if fenetre_minecraft_ouverte():
@@ -288,8 +309,8 @@ def main():
             print("Menu Minecraft détecté. Début du script...")
             pyautogui.sleep(2)
 
-            for compte in donnees["comptes"][:50]:
-                if compte["deposit"] == "true":
+            for compte in donnees["comptes"][:100]:
+                if compte["dispose"] == "true":
                     print(
                         f"{compte['username']} a déja été checker.")
                     continue  # Passe au prochain compte
@@ -366,58 +387,21 @@ def main():
                                                     pyautogui.sleep(
                                                         15)
                                                     keyboard_controller.press(
-                                                        "w")
-                                                    time.sleep(2)
-                                                    keyboard_controller.release(
-                                                        "w")
-                                                    
-                                                    # disconnect()
-                                                    # reconnect()
-                                                    # Demande de téléportation en boucle
-                                                    envoyer_tpa_et_verifier_image()
-                                                    print(
-                                                        "Demande d'envoie accepter.")
-                                                    pyautogui.sleep(
-                                                        15)
-                                                    keyboard_controller.press(
                                                         Key.enter)
                                                     keyboard_controller.release(
                                                         Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
+                                                    time.sleep(1)
                                                     pyautogui.write(
-                                                        '/sethome rarecandy')
+                                                        '/dispose')
+                                                    time.sleep(1)
                                                     keyboard_controller.press(
                                                         Key.enter)
                                                     keyboard_controller.release(
                                                         Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
-                                                    keyboard_controller.press(
-                                                        Key.enter)
-                                                    keyboard_controller.release(
-                                                        Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
-                                                    pyautogui.write(
-                                                        '/kit aventurier')
-                                                    keyboard_controller.press(
-                                                        Key.enter)
-                                                    keyboard_controller.release(
-                                                        Key.enter)
-                                                    
                                                     pyautogui.sleep(
                                                         3)
-                                                    mouse.click(
-                                                        Button.right, 1)
-                                                    pyautogui.sleep(1)
-                                                    pyautogui.moveTo(100, 100, 0.2)
-                                                    cliquer_sur_image_zones(
-                                                        chemin_image, 0.5, region_recherche)
-                                                    pyautogui.moveTo(100, 100, 0.2)
-                                                    cliquer_sur_image_zones(
-                                                        chemin_image_thunder, 0.8, region_recherche)
-                                                    daily_reward(donnees)
+                                                    cliquer_sur_images_dossier(dossier='dispose', seuil=0.5, region=region_generale)
+                                                    mettre_a_jour_status_check(donnees, compte['username'])
                                                     time.sleep(1)
                                                     keyboard_controller.press(
                                                         Key.esc)

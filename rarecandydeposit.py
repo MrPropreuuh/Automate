@@ -195,7 +195,8 @@ def envoyer_tpa_et_verifier_image():
         keyboard_controller.release(Key.enter)
 
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-chemin_image_thunder = os.path.join(os.getcwd(), 'images1080', "key.png")
+day2 = os.path.join(os.getcwd(), 'disposedaily', "day2.png")
+day3 = os.path.join(os.getcwd(), 'disposedaily', "day3.png")
 region_recherche = (710, 500, 500, 250)  # La région où chercher l'image
 
 
@@ -301,7 +302,7 @@ def main():
 
                                     # CHANGEMENT D'IP
                                     print("Changement d'IP en cours...")
-                                    run_ip_changer()
+                                    # run_ip_changer()
 
                                     attendre_image(os.path.join(
                                         os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
@@ -366,7 +367,10 @@ def main():
                                                         chemin_image, 0.5, region_recherche)
                                                     pyautogui.moveTo(100, 100, 0.2)
                                                     cliquer_sur_image_zones(
-                                                        chemin_image_thunder, 0.8, region_recherche)
+                                                        day2, 0.5, region_recherche)
+                                                    pyautogui.moveTo(100, 100, 0.2)
+                                                    cliquer_sur_image_zones(
+                                                        day3, 0.5, region_recherche)
                                                     daily_reward(donnees)
                                                     time.sleep(1)
                                                     keyboard_controller.press(

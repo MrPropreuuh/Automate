@@ -18,7 +18,8 @@ import sys
 keyboard_controller = KeyboardController()
 mouse = MouseController()
 
-
+day2 = os.path.join(os.getcwd(), 'disposedaily', "day2.png")
+day3 = os.path.join(os.getcwd(), 'disposedaily', "day3.png")
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
 region_recherche = (710, 500, 500, 250)
 
@@ -126,6 +127,10 @@ def main():
     pyautogui.sleep(1)
     cliquer_sur_image_zones(
         chemin_image, 0.6, region_recherche)
+    cliquer_sur_image_zones(
+        day2, 0.6, region_recherche)
+    cliquer_sur_image_zones(
+        day3, 0.6, region_recherche)
     keyboard_controller.press(
         Key.esc)
     keyboard_controller.release(

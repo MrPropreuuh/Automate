@@ -195,7 +195,7 @@ def envoyer_tpa_et_verifier_image():
         keyboard_controller.release(Key.enter)
 
 chemin_image = os.path.join(os.getcwd(), 'images1080', "rarecandy.png")
-chemin_image_thunder = os.path.join(os.getcwd(), 'images1080', "thunder.png")
+chemin_image_thunder = os.path.join(os.getcwd(), 'images1080', "key.png")
 region_recherche = (710, 500, 500, 250)  # La région où chercher l'image
 
 
@@ -235,31 +235,9 @@ def cliquer_sur_image_zones(image_path, seuil=0.8, region=None):
     except Exception as e:
         # Gérer l'exception si nécessaire (optionnel)
         print(f"Une erreur s'est produite: {e}")
+
+
 macro_active = False
-def disconnect():
-    keyboard_controller.press(Key.esc)
-    keyboard_controller.release(Key.esc)
-    attendre_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-    if cliquer_sur_image(os.path.join(
-        os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                print(
-                    "Déconnexion.")
-                pyautogui.sleep(
-                            3)
-                cliquer_sur_image(os.path.join(
-                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
-            
-def reconnect():
-    if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "menu.png"), 0.5):
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "multiplayer.png"), 0.8)
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "direct_conn.png"), 0.8)
-        time.sleep(1)
-        cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join.png"), 0.8)
-        time.sleep(10)
-
-
 
 
 def stop_macro():
@@ -288,7 +266,7 @@ def main():
             print("Menu Minecraft détecté. Début du script...")
             pyautogui.sleep(2)
 
-            for compte in donnees["comptes"][:50]:
+            for compte in donnees["comptes"][:100]:
                 if compte["deposit"] == "true":
                     print(
                         f"{compte['username']} a déja été checker.")
@@ -323,7 +301,7 @@ def main():
 
                                     # CHANGEMENT D'IP
                                     print("Changement d'IP en cours...")
-                                    run_ip_changer()
+                                    # run_ip_changer()
 
                                     attendre_image(os.path.join(
                                         os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
@@ -366,48 +344,20 @@ def main():
                                                     pyautogui.sleep(
                                                         15)
                                                     keyboard_controller.press(
-                                                        "w")
-                                                    time.sleep(2)
-                                                    keyboard_controller.release(
-                                                        "w")
-                                                    
-                                                    # disconnect()
-                                                    # reconnect()
-                                                    # Demande de téléportation en boucle
-                                                    envoyer_tpa_et_verifier_image()
-                                                    print(
-                                                        "Demande d'envoie accepter.")
-                                                    pyautogui.sleep(
-                                                        15)
-                                                    keyboard_controller.press(
                                                         Key.enter)
                                                     keyboard_controller.release(
                                                         Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
-                                                    pyautogui.write(
-                                                        '/sethome rarecandy')
-                                                    keyboard_controller.press(
-                                                        Key.enter)
-                                                    keyboard_controller.release(
-                                                        Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
-                                                    keyboard_controller.press(
-                                                        Key.enter)
-                                                    keyboard_controller.release(
-                                                        Key.enter)
-                                                    pyautogui.sleep(
-                                                        1)
+                                                    time.sleep(1)
                                                     pyautogui.write(
                                                         '/kit aventurier')
+                                                    time.sleep(1)
                                                     keyboard_controller.press(
                                                         Key.enter)
                                                     keyboard_controller.release(
                                                         Key.enter)
-                                                    
                                                     pyautogui.sleep(
                                                         3)
+                                                    keyboard_controller.release("1")
                                                     mouse.click(
                                                         Button.right, 1)
                                                     pyautogui.sleep(1)

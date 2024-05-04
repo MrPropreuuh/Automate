@@ -13,7 +13,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 2,
@@ -28,7 +28,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 3,
@@ -43,7 +43,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 4,
@@ -58,7 +58,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 5,
@@ -73,7 +73,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 6,
@@ -88,7 +88,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 7,
@@ -103,7 +103,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 8,
@@ -118,7 +118,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 9,
@@ -133,7 +133,7 @@
             "ivsCheck": "false",
             "daily": 1,
             "dailyComplete": "false",
-            "deposit": "false"
+            "deposit": "true"
         },
         {
             "id": 10,

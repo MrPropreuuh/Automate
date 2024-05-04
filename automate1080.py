@@ -46,7 +46,7 @@ def run_ip_changer():
 
 
 def charger_donnees():
-    with open('donnees2.json', 'r') as fichier:
+    with open('donnees3.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
@@ -79,7 +79,7 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 
-def sauvegarder_donnees(donnees, nom_fichier='donnees2.json'):
+def sauvegarder_donnees(donnees, nom_fichier='donnees3.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
@@ -196,7 +196,7 @@ def main():
             print("Menu Minecraft détecté. Début du script...")
             pyautogui.sleep(2)
 
-            for compte in donnees["comptes"][:50]:
+            for compte in donnees["comptes"][:30]:
                 if compte["today"] == "true":
                     print(
                         f"{compte['username']} a déjà fait son kit aujourd'hui.")
@@ -295,16 +295,6 @@ def main():
                                                             "Validation du starter détectée.")
                                                         pyautogui.sleep(
                                                             10)
-                                                        # keyboard_controller.press(
-                                                        #     Key.enter)
-                                                        # pyautogui.sleep(
-                                                        #     1)
-                                                        # pyautogui.write(
-                                                        #     '/kit aventurier')
-                                                        # keyboard_controller.press(
-                                                        #     Key.enter)
-                                                        # pyautogui.sleep(
-                                                        #     1)
                                                         keyboard_controller.press(
                                                                 Key.esc)
                                                         keyboard_controller.release(
@@ -319,133 +309,8 @@ def main():
                                                                     os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
                                                                 cliquer_sur_image(os.path.join(
                                                                     os.getcwd(), 'images1080', "cancel.png"), 0.8)
-                                                                
-                                                        if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
-                                                            keyboard_controller.press(
-                                                            Key.enter)
-                                                            pyautogui.sleep(
-                                                                1)
-                                                            pyautogui.write(
-                                                                '/tpa QwiaLite')
-                                                            keyboard_controller.press(
-                                                                Key.enter)
-                                                            pyautogui.sleep(15)
-                                                            keyboard_controller.press(
-                                                            Key.enter)
-                                                            pyautogui.sleep(
-                                                                1)
-                                                            pyautogui.write(
-                                                                '/home rarecandy')
-                                                            keyboard_controller.press(
-                                                                Key.enter)
-                                                            mettre_a_jour_status_si_kit_valid(
-                                                                donnees, compte)
-                                                            time
-                                                            keyboard_controller.press(
-                                                                Key.esc)
-                                                            keyboard_controller.release(
-                                                                Key.esc)
-                                                            
-                                                            attendre_image(os.path.join(
-                                                                os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-                                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                                                                print(
-                                                                    "Déconnexion.")
-                                                                attendre_image(os.path.join(
-                                                                    os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
-                                                                cliquer_sur_image(os.path.join(
-                                                                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
-                                                        if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_fail.png"), 0.8):
-                                                            mettre_a_jour_status_si_kit_false(
-                                                                donnees, compte)
-                                                            attendre_image(os.path.join(
-                                                                os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-                                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                                                                print(
-                                                                    "Déconnexion.")
-                                                                attendre_image(os.path.join(
-                                                                    os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
-                                                                cliquer_sur_image(os.path.join(
-                                                                    os.getcwd(), 'images1080', "cancel.png"), 0.8)
-                                                    else:
-                                                        print(
-                                                            "Validation du starter non détectée.")
-                                                else:
-                                                    print(
-                                                        "Choix du starter non détecté.")
-                                            else:
-                                                print(
-                                                    "Monde Pixelmon non détecté.")
-                                        # Après l'enregistrement, ou d  irectement si on est sur la page de connexion
-                                        if image_detectee(os.path.join(os.getcwd(), 'images1080', "logging_acc.png"), 0.9):
-                                            print(
-                                                "Page de connexion détectée.")
-                                            keyboard_controller.press(
-                                                Key.enter)
-                                            pyautogui.sleep(1)
-                                            pyautogui.write(
-                                                f'/login {mdp}')
-                                            keyboard_controller.press(
-                                                Key.enter)
-                                            pyautogui.sleep(1)
-
-                                            keyboard.press('1')
-                                            keyboard.release('1')
-                                            pyautogui.sleep(1)
-                                            mouse.click(Button.right, 1)
-                                            pyautogui.sleep(1)
-                                            attendre_image(os.path.join(
-                                                os.getcwd(), 'images1080', "join_pixelmon.png"), 0.8)
-                                            if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "join_pixelmon.png"), 0.8):
-                                                print(
-                                                    "Monde Pixelmon détecté.")
-                                                pyautogui.sleep(
-                                                    10)
-                                                keyboard_controller.press(
-                                                    Key.enter)
-                                                pyautogui.sleep(
-                                                    1)
-                                                pyautogui.write(
-                                                    '/kit aventurier')
-                                                keyboard_controller.press(
-                                                    Key.enter)
-                                                pyautogui.sleep(
-                                                    1)
-                                                if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_valid.png"), 0.8):
-                                                    deposit()
-                                                    mettre_a_jour_status_si_kit_valid(
-                                                        donnees, compte)
-                                                    time.sleep(3)
-                                                    keyboard_controller.press(
-                                                        Key.esc)
-                                                    keyboard_controller.release(
-                                                        Key.esc)
-                                                    attendre_image(os.path.join(
-                                                        os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-                                                    if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                                                        print(
-                                                            "Déconnexion.")
-                                                        attendre_image(os.path.join(
-                                                            os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
-                                                        cliquer_sur_image(os.path.join(
-                                                            os.getcwd(), 'images1080', "cancel.png"), 0.8)
-                                                if image_detectee(os.path.join(os.getcwd(), 'images1080', "kit_fail.png"), 0.8):
-                                                    mettre_a_jour_status_si_kit_false(
-                                                        donnees, compte)
-                                                    keyboard_controller.press(
-                                                        Key.esc)
-                                                    keyboard_controller.release(
-                                                        Key.esc)
-                                                    attendre_image(os.path.join(
-                                                        os.getcwd(), 'images1080', "disconnect.png"), 0.8)
-                                                    if cliquer_sur_image(os.path.join(os.getcwd(), 'images1080', "disconnect.png"), 0.8):
-                                                        print(
-                                                            "Déconnexion.")
-                                                        attendre_image(os.path.join(
-                                                            os.getcwd(), 'images1080', "verification_multiplayer.png"), 0.8)
-                                                        cliquer_sur_image(os.path.join(
-                                                            os.getcwd(), 'images1080', "cancel.png"), 0.8)
-
+                                                                mettre_a_jour_status_si_kit_valid(
+                                                                    donnees, compte)
                                         else:
                                             print(
                                                 "Pas de connexion au serveur ou inlisible.")

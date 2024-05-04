@@ -23,18 +23,18 @@ mouse = MouseController()
 
 
 def charger_donnees():
-    with open('donnees.json', 'r') as fichier:
+    with open('donnees3.json', 'r') as fichier:
         donnees = json.load(fichier)
     return donnees
 
 
 def lire_json():
-    with open('donnees.json', 'r', encoding='utf-8') as fichier:
+    with open('donnees3.json', 'r', encoding='utf-8') as fichier:
         return json.load(fichier)
 
 
 def ecrire_json(data):
-    with open('donnees.json', 'w', encoding='utf-8') as fichier:
+    with open('donnees3.json', 'w', encoding='utf-8') as fichier:
         json.dump(data, fichier, indent=4)
 
 
@@ -116,7 +116,7 @@ def mettre_a_jour_status_check(donnees, compte_username):
             break  # Sortie de la boucle une fois le compte trouvé et mis à jour
 
     # Sauvegarde des données mises à jour dans le fichier JSON
-    sauvegarder_donnees(donnees, 'donnees.json')
+    sauvegarder_donnees(donnees, 'donnees3.json')
 
 
 def enregistrer_script_schedule(donnees):
@@ -147,7 +147,7 @@ def trouver_image(image_path):
         return max_val, max_loc, template.shape[::-1]
 
 
-def sauvegarder_donnees(donnees, nom_fichier='donnees.json'):
+def sauvegarder_donnees(donnees, nom_fichier='donnees3.json'):
     with open(nom_fichier, 'w') as fichier:
         json.dump(donnees, fichier, indent=4)
 
