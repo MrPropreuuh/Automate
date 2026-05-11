@@ -1,0 +1,45 @@
+# Secrets
+.env
+.ssh/
+
+# Debug / logs
+debug_logs/
+*.log
+debug_*.png
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Claude / IDE
+.claude/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Large binaries / media
+*.mp4
+
+# Temp / test artifacts
+proxy_cooldown.json
+sp_page.html
+D.html
+transcript-*.html
+
+# Test files
+test*.py
+camoufox_vote_test.py
+vvote.py
+
+# State files (runtime)
+state.json
+reset_sites.json
+
+# Config append
+dmc_env_append.txt
+
+# Audit
+AUDIT_*.md

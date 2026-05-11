@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Pit Macro · Grid (C) — Preview</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Kalam:wght@300;400;700&display=swap');
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; font-family: 'JetBrains Mono', monospace; background: #0a0810; }
+  * { box-sizing: border-box; }
+
+  /* HUD wrapper — centered */
+  .hud-mount {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+  }
+
+  /* control bar */
+  .controls {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 6px 8px;
+    font-family: 'Kalam', sans-serif;
+    color: #f0eee9;
+    font-size: 12px;
+    backdrop-filter: blur(6px);
+  }
+  .controls button {
+    background: rgba(255,176,32,0.15);
+    border: 1px solid #ffb02055;
+    color: #ffb020;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    cursor: pointer;
+    letter-spacing: 1px;
+  }
+  .controls button:hover { background: rgba(255,176,32,0.3); }
+  .controls .label {
+    align-self: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .hint {
+    position: absolute;
+    bottom: 10px;
+    left: 14px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Kalam', sans-serif;
+    font-size: 11px;
+    z-index: 5;
+  }
+  .hint a {
+    color: #ffb020;
+    text-decoration: none;
+    border-bottom: 1px dotted #ffb02088;
+  }
+</style>
+</head>
+<body>
+
+<div id="hud-mount" class="hud-mount"></div>
+
+<div class="controls">
+  <span class="label">DEMO</span>
+  <button id="replay">⟳ REPLAY ANIM</button>
+  <button id="kill">+ KILL</button>
+  <button id="myth">+ MYTHIC</button>
+  <button id="reset">RESET</button>
+</div>
+
+<div class="hint">⤺ <a href="HUD Entity Scanner.html">retour aux 4 variations</a> · clique les boutons pour déclencher les animations live</div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="pit-stats.jsx"></script>
+
+<script type="text/babel">
+  const { useState } = React;
+  const INITIAL = {...PIT_STATS};
+
+  function LivePit() {
+    const [stats, setStats] = useState({...INITIAL});
+    const [key, setKey] = useState(0);
+
+    React.useEffect(() => {
+      document.getElementById('replay').onclick = () => setKey(k => k + 1);
+      document.getElementById('kill').onclick = () => {
+        setStats(s => ({
+          ...s,
+          kills: s.kills + 1,
+          gold: s.gold + Math.floor(80 + Math.random() * 240),
+          xp: s.xp + Math.floor(20 + Math.random() * 60),
+          currentStreak: s.currentStreak + 1,
+          bestStreak: Math.max(s.bestStreak, s.currentStreak + 1),
+        }));
+      };
+      document.getElementById('myth').onclick = () => {
+        setStats(s => ({ ...s, mythics: s.mythics + 1 }));
+      };
+      document.getElementById('reset').onclick = () => {
+        setStats({...INITIAL});
+        setKey(k => k + 1);
+      };
+    }, []);
+
+    window.PIT_STATS = stats;
+    return <div key={key}><PitHUD_Grid accent="#ffb020"/></div>;
+  }
+
+  ReactDOM.createRoot(document.getElementById('hud-mount')).render(<LivePit/>);
+</script>
+
+</body>
+</html>

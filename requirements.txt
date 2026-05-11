@@ -1,0 +1,9 @@
+curl-cffi
+python-dotenv
+selenium
+undetected-chromedriver
+beautifulsoup4
+2captcha-python
+psutil
+openai
+groq
