@@ -217,18 +217,24 @@ RESET_VOTE_THRESHOLD = 3   # votes max pour considérer le classement resetté
 
 def create_session() -> requests.Session:
     """
-    Crée une Session curl_cffi impersonnant Chrome 110.
-    Injecte le cookie de session Cloudflare depuis .env (LG_COOKIE).
-    Vérifiée live : GET /profile retourne 200 sans redirection.
+    Crée une Session curl_cffi impersonnant Chrome 124.
+    Injecte les cookies via le jar (pas le header Cookie) pour que
+    curl_cffi gère correctement le bypass Cloudflare sans cf_clearance.
     """
-    session = requests.Session(impersonate="chrome110")
+    session = requests.Session(impersonate="chrome124")
     session.headers.update({
         "User-Agent":      LG_USER_AGENT,
         "Accept":          "text/html,application/xhtml+xml,application/xml;q=0.9,"
                            "image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-        "Cookie":          LG_COOKIE,
     })
+    for part in LG_COOKIE.split(";"):
+        part = part.strip()
+        if "=" in part:
+            name, value = part.split("=", 1)
+            name = name.strip()
+            if name != "cf_clearance":  # cf_clearance est IP-bound, inutile sur le Pi
+                session.cookies.set(name, value.strip(), domain="lostgard.fr")
     return session
 
 
