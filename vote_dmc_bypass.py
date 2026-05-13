@@ -747,7 +747,10 @@ def vote_for_account(driver, account) -> dict:
             except:
                 pass
 
-        driver.switch_to.window(original_window)
+        try:
+            driver.switch_to.window(original_window)
+        except Exception:
+            pass
 
         if validated:
             return {"status": "success", "pseudo": pseudo}

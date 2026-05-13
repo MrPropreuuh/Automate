@@ -383,7 +383,6 @@ def create_driver(proxy: dict | None = None):
     options.add_argument("--disable-gpu")
     # ── Flags Linux-only (crashent sur Windows) ──────────────────────────
     if sys.platform != "win32":
-        options.add_argument("--single-process")  # Réduit drastiquement les FDs
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
     options.add_argument("--disable-features=TranslateUI")
