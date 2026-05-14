@@ -256,10 +256,8 @@ def _solve_captcha_ai(driver, github_token):
         if twocaptcha_key and twocaptcha_key not in ("dummy_skip", ""):
             try:
                 log.info("[CAPTCHA] Envoi a 2captcha (image normal)...")
-                import base64 as b64mod
                 solver = TwoCaptcha(twocaptcha_key)
-                img_bytes = b64mod.b64decode(base64_image + "==")
-                result = solver.normal(file=img_bytes)
+                result = solver.normal(file=base64_image)
                 captcha_text = result["code"].strip()
                 log.info(f"[CAPTCHA] 2captcha → '{captcha_text}'")
                 driver.switch_to.default_content()
