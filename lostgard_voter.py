@@ -10,6 +10,12 @@ Architecture duale :
   Selenium   → undetected-chromedriver via Xvfb (captchas dynamiques sur Linux)
 """
 import sys
+# vote_dmc_bypass.py fait `from lostgard_voter import create_driver` à l'intérieur
+# de sa fonction vote(). Comme ce script tourne comme __main__, Python ne trouve
+# pas 'lostgard_voter' dans sys.modules et le réimporte en entier — ce qui
+# ré-exécute _discover_vote_modules() alors que stdout est fermé (Chrome fork).
+# Cette ligne l'enregistre immédiatement pour éviter ce re-import.
+sys.modules.setdefault('lostgard_voter', sys.modules['__main__'])
 import io
 import os
 import glob
