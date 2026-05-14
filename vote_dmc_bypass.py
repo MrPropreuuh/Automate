@@ -206,9 +206,39 @@ def _extract_mtcaptcha_base64(driver):
     return match.group(1)
 
 
+_CAPTCHA_PROMPT = (
+    "Analyse cette image de CAPTCHA. Elle contient des lettres et/ou des chiffres "
+    "deformes et barres. Reponds UNIQUEMENT avec la sequence de caracteres que tu "
+    "vois, sans aucune explication, phrase ou formatage."
+)
+
+
+def _call_vision_api(base64_image: str, api_key: str, base_url: str, model: str) -> str:
+    """Appelle une API compatible OpenAI vision et retourne le texte du captcha."""
+    client = OpenAI(base_url=base_url, api_key=api_key) if base_url else OpenAI(api_key=api_key)
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": [
+            {"type": "text", "text": _CAPTCHA_PROMPT},
+            {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{base64_image}"}}
+        ]}],
+        max_tokens=30
+    )
+    return response.choices[0].message.content.strip()
+
+
 def _solve_captcha_ai(driver, github_token):
-    """Resout le MTCaptcha visuel — GPT-4o en priorite, 2captcha image en fallback."""
+    """Resout le MTCaptcha visuel — OpenAI → GitHub Models → 2captcha image."""
+    openai_key     = os.getenv("OPENAI_API_KEY", "")
     twocaptcha_key = os.getenv("TWOCAPTCHA_API_KEY", "")
+
+    # Ordre de priorite des solveurs AI (base_url=None → OpenAI standard)
+    ai_backends = []
+    if openai_key:
+        ai_backends.append(("OpenAI gpt-4o-mini", openai_key, None, "gpt-4o-mini"))
+    if github_token:
+        ai_backends.append(("GitHub Models gpt-4o", github_token,
+                            "https://models.inference.ai.azure.com", "gpt-4o"))
 
     try:
         log.info("[CAPTCHA] Extraction de l'image MTCaptcha...")
@@ -216,56 +246,31 @@ def _solve_captcha_ai(driver, github_token):
         if not base64_image:
             return None
 
-        # Priorite 1 : GitHub Models GPT-4o
-        if github_token:
+        # Priorites 1-N : solveurs AI
+        for label, key, url, model in ai_backends:
             try:
-                log.info("[CAPTCHA] Envoi a GPT-4o (GitHub Models)...")
-                client = OpenAI(
-                    base_url="https://models.inference.ai.azure.com",
-                    api_key=github_token
-                )
-                response = client.chat.completions.create(
-                    model="gpt-4o",
-                    messages=[{
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": (
-                                    "Analyse cette image de CAPTCHA. Elle contient des lettres et/ou des chiffres "
-                                    "deformes et barres. Reponds UNIQUEMENT avec la sequence de caracteres que tu "
-                                    "vois, sans aucune explication, phrase ou formatage."
-                                )
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {"url": f"data:image/png;base64,{base64_image}"}
-                            }
-                        ]
-                    }],
-                    max_tokens=30
-                )
-                captcha_text = response.choices[0].message.content.strip()
-                log.info(f"[CAPTCHA] GPT-4o → '{captcha_text}'")
+                log.info(f"[CAPTCHA] Envoi a {label}...")
+                text = _call_vision_api(base64_image, key, url, model)
+                log.info(f"[CAPTCHA] {label} → '{text}'")
                 driver.switch_to.default_content()
-                return captcha_text
+                return text
             except Exception as e:
-                log.warning(f"[CAPTCHA] GPT-4o echoue ({e}), tentative 2captcha image...")
+                log.warning(f"[CAPTCHA] {label} echoue: {e}")
 
-        # Priorite 2 : 2captcha image captcha (workers humains)
+        # Fallback : 2captcha workers humains
         if twocaptcha_key and twocaptcha_key not in ("dummy_skip", ""):
             try:
-                log.info("[CAPTCHA] Envoi a 2captcha (image normal)...")
+                log.info("[CAPTCHA] Envoi a 2captcha (image)...")
                 solver = TwoCaptcha(twocaptcha_key)
                 result = solver.normal(file=base64_image)
-                captcha_text = result["code"].strip()
-                log.info(f"[CAPTCHA] 2captcha → '{captcha_text}'")
+                text = result["code"].strip()
+                log.info(f"[CAPTCHA] 2captcha → '{text}'")
                 driver.switch_to.default_content()
-                return captcha_text
+                return text
             except Exception as e:
                 log.error(f"[CAPTCHA] 2captcha image echoue: {e}")
 
-        log.warning("[CAPTCHA] Aucun solveur disponible (GITHUB_TOKEN et TWOCAPTCHA_API_KEY absents).")
+        log.warning("[CAPTCHA] Aucun solveur disponible.")
         driver.switch_to.default_content()
         return None
 
