@@ -12,6 +12,8 @@ Architecture duale :
 import sys
 import io
 import os
+import glob
+import importlib.util
 import shutil
 import tempfile
 import re
@@ -33,12 +35,6 @@ from bs4 import BeautifulSoup
 # que UC auto-lance chromedriver au démarrage (crash ARM64 → zombie → exception
 # WebDriver 40s plus tard dans le thread principal pendant les votes HTTP-only).
 uc = None
-
-# ── Modules bypass (un fichier par bouton de vote) ──────────────────────────
-import vote_1_bypass
-import vote_2_bypass
-import vote_3_bypass
-import vote_dmc_bypass
 
 from lg_logger import logger, trace, status
 from hardware_monitor import monitor, notifier
@@ -178,13 +174,40 @@ STATE_FILE    = "/app/state.json"   # timers sauvegardés entre redémarrages
 OVERRIDE_FILE = "/app/reset_sites.json"  # pour forcer le vote d'un site sans redémarrer
 CF_TITLES        = ("Just a moment...", "Un instant…", "Attention Required!", "Please Wait...")
 
-# ── Associe vote_id → module bypass ─────────────────────────────────────────
-BYPASS_MODULES = {
-    "1": vote_1_bypass,
-    "2": vote_2_bypass,
-    "3": vote_3_bypass,
-    "dmc": vote_dmc_bypass,
-}
+# ── Découverte automatique des modules bypass ────────────────────────────────
+def _discover_vote_modules() -> dict:
+    """
+    Scanne le répertoire courant pour tous les fichiers vote_*.py et les importe.
+    Le site_id est extrait du nom de fichier : vote_{id}_bypass.py → "{id}".
+    Les modules sont triés par nom de fichier (vote_1 avant vote_2, etc.).
+    Interface requise : SITE_NAME, COOLDOWN_SECONDS, vote(session, driver).
+    """
+    directory = os.path.dirname(os.path.abspath(__file__))
+    found = {}
+    for path in sorted(glob.glob(os.path.join(directory, "vote_*.py"))):
+        filename = os.path.basename(path)
+        m = re.match(r'^vote_(.+?)(?:_bypass)?\.py$', filename)
+        if not m:
+            continue
+        site_id = m.group(1)
+        module_name = filename[:-3]
+        try:
+            spec = importlib.util.spec_from_file_location(module_name, path)
+            mod  = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            missing = [a for a in ("SITE_NAME", "COOLDOWN_SECONDS", "vote") if not hasattr(mod, a)]
+            if missing:
+                print(f"[discovery] {filename} ignoré — attributs manquants : {missing}")
+                continue
+            found[site_id] = mod
+            print(f"[discovery] {filename} → site_id={site_id!r}  ({mod.SITE_NAME})")
+        except Exception as e:
+            print(f"[discovery] Erreur import {filename} : {e}")
+    if not found:
+        print("[discovery] ATTENTION — aucun module vote_*.py trouvé !")
+    return found
+
+BYPASS_MODULES = _discover_vote_modules()
 
 # ── Paramètres sieste nocturne ───────────────────────────────────────────────
 NIGHT_START        = 2     # heure de début (incluse)
@@ -201,12 +224,7 @@ LEAD_SLEEP_MAX  = 3600   # 1h max
 # ── Cutoffs reset mensuel (cooldown du site + marge 10 min, en secondes) ─────
 # Valeurs par défaut issues d'autovoteSAO — à ajuster selon les vraies durées
 # de cooldown des boutons N1/N2/N3 de lostgard.fr une fois le vote activé.
-SITE_CUTOFF = {
-    "1": vote_1_bypass.COOLDOWN_SECONDS,
-    "2": vote_2_bypass.COOLDOWN_SECONDS,
-    "3": vote_3_bypass.COOLDOWN_SECONDS,
-    "dmc": vote_dmc_bypass.COOLDOWN_SECONDS,
-}
+SITE_CUTOFF = {sid: mod.COOLDOWN_SECONDS for sid, mod in BYPASS_MODULES.items()}
 RESET_VOTE_THRESHOLD = 3   # votes max pour considérer le classement resetté
 
 
@@ -395,6 +413,11 @@ def create_driver(proxy: dict | None = None):
     if sys.platform != "win32":
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--no-sandbox")
+        # ARM64-specific: le zygote process cause des SIGSEGV sur Pi/Docker ARM64
+        options.add_argument("--no-zygote")
+        options.add_argument("--disable-webgl")
+        options.add_argument("--disable-accelerated-2d-canvas")
+        options.add_argument("--disable-software-rasterizer")
     options.add_argument("--disable-features=TranslateUI")
     options.add_argument("--disable-background-networking")
     options.add_argument("--disable-component-update")
@@ -987,11 +1010,12 @@ def main():
                 result = module.vote(session, driver)
             except Exception as e:
                 reason = str(e)
-                # Stale Chromium crash exception leaking into HTTP-only votes:
+                # Stale Chromium crash exception leaking into HTTP-only votes.
                 # WebDriverException formats as "Message:\nStacktrace:\n#0 0x..."
-                # Strip to a clean one-liner so Discord doesn't show raw hex dumps.
-                if not needs_driver and "\nStacktrace:" in reason:
-                    reason = f"Stale Chrome crash (vote precedent): {reason.split(chr(10))[0].strip()}"
+                # or starts directly with "Stacktrace:\n#0..." — both cases handled.
+                if not needs_driver and "Stacktrace:" in reason:
+                    first_line = reason.split("\n")[0].strip() or "crash"
+                    reason = f"Stale Chrome crash (vote precedent): {first_line}"
                 print(f"  [{module.SITE_NAME}] Exception : {reason}")
                 result = {"status": "failed", "reason": reason}
             finally:

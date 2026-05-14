@@ -19,13 +19,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Code source ───────────────────────────────────────────────────────────────
-COPY lostgard_voter.py .
-COPY vote_1_bypass.py .
-COPY vote_2_bypass.py .
-COPY vote_3_bypass.py .
-COPY vote_dmc_bypass.py .
-COPY lg_logger.py .
-COPY hardware_monitor.py .
+COPY lostgard_voter.py lg_logger.py hardware_monitor.py ./
+# Tous les modules vote_*.py sont copiés automatiquement — ajouter un site
+# = créer vote_{id}_bypass.py ici, pas besoin de toucher ce fichier.
+COPY vote_*_bypass.py ./
 COPY proxies.txt .
 COPY proxy_cooldown.json .
 COPY .env .

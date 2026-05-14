@@ -21,7 +21,8 @@ FORM_URL         = "https://serveur-prive.net/minecraft/lostgard/vote/form/ajax"
 COOLDOWN_SECONDS = 5460    # 91 min (site cooldown = 90 min)
 MT_SITEKEY       = "MTPublic-42pXmytZe"
 
-ENABLED = True
+ENABLED      = True
+NEEDS_DRIVER = False   # vote entièrement HTTP — pas de Selenium
 
 
 def vote(session, driver=None) -> dict:
