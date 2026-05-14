@@ -29,11 +29,10 @@ from dotenv import load_dotenv
 from curl_cffi import requests
 from bs4 import BeautifulSoup
 
-import undetected_chromedriver as uc
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+# Selenium/UC imports sont lazily chargés dans create_driver() pour éviter
+# que UC auto-lance chromedriver au démarrage (crash ARM64 → zombie → exception
+# WebDriver 40s plus tard dans le thread principal pendant les votes HTTP-only).
+uc = None
 
 # ── Modules bypass (un fichier par bouton de vote) ──────────────────────────
 import vote_1_bypass
@@ -314,6 +313,11 @@ def create_driver(proxy: dict | None = None):
     Args:
         proxy: dict optionnel {"host", "port", "user", "pass"} pour proxy residentiel
     """
+    global uc
+    if uc is None:
+        import undetected_chromedriver as _uc
+        uc = _uc
+
     # Verification FD avant lancement
     fd_health = _check_fd_health()
     if fd_health['critical']:
@@ -982,8 +986,14 @@ def main():
                     driver, tmp_dir, proxy_ext_dir = create_driver()
                 result = module.vote(session, driver)
             except Exception as e:
-                print(f"  [{module.SITE_NAME}] Exception : {e}")
-                result = {"status": "failed", "reason": str(e)}
+                reason = str(e)
+                # Stale Chromium crash exception leaking into HTTP-only votes:
+                # WebDriverException formats as "Message:\nStacktrace:\n#0 0x..."
+                # Strip to a clean one-liner so Discord doesn't show raw hex dumps.
+                if not needs_driver and "\nStacktrace:" in reason:
+                    reason = f"Stale Chrome crash (vote precedent): {reason.split(chr(10))[0].strip()}"
+                print(f"  [{module.SITE_NAME}] Exception : {reason}")
+                result = {"status": "failed", "reason": reason}
             finally:
                 if driver:
                     try:
@@ -1007,6 +1017,20 @@ def main():
 
                 # Cleanup leftover processes after each Selenium run
                 cleanup_leftover_processes()
+
+                # Attendre la mort complète de Chrome avant le site suivant.
+                # Un crash Chromium asynchrone peut lever une WebDriverException
+                # dans le thread principal pendant le vote HTTP suivant.
+                if driver is not None or needs_driver:
+                    chrome_deadline = time.time() + 15
+                    while time.time() < chrome_deadline:
+                        alive = [p for p in psutil.process_iter(['name'])
+                                 if 'chrom' in (p.info.get('name') or '').lower()]
+                        if not alive:
+                            break
+                        time.sleep(1)
+                    else:
+                        cleanup_leftover_processes()  # kill anything still alive
 
                 # ── CRITIQUE: Délai FD recovery après Selenium ───────────────
                 # Les sockets TCP du navigateur entrent en TIME_WAIT (60-120s).

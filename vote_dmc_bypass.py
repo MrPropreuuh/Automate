@@ -23,7 +23,6 @@ from dotenv import load_dotenv
 from twocaptcha import TwoCaptcha
 from openai import OpenAI
 
-import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -189,72 +188,91 @@ def _safe_quit_driver(driver, tmp_dir: str | None, account_label: str,
 
 # ── AI Captcha Solver ────────────────────────────────────────────────────────
 
-def _solve_captcha_ai(driver, github_token):
-    """Resout le MTCaptcha via GitHub Models (GPT-4o)."""
-    if not github_token:
-        log.warning("[AI] GITHUB_TOKEN non configure.")
+def _extract_mtcaptcha_base64(driver):
+    """Extrait le base64 de l'image MTCaptcha depuis l'iframe. Retourne (base64_str, driver_a_reseter)."""
+    wait = WebDriverWait(driver, 20)
+    wait.until(EC.frame_to_be_available_and_switch_to_it(
+        (By.CSS_SELECTOR, "iframe[src*='mtcaptcha.com']")
+    ))
+    captcha_element = wait.until(
+        EC.visibility_of_element_located((By.ID, "mtcap-image-1"))
+    )
+    style = captcha_element.get_attribute("style")
+    match = re.search(r'base64,([^"]+)', style)
+    if not match:
+        log.error("[CAPTCHA] Impossible d'extraire le base64 de l'image.")
+        driver.switch_to.default_content()
         return None
+    return match.group(1)
+
+
+def _solve_captcha_ai(driver, github_token):
+    """Resout le MTCaptcha visuel — GPT-4o en priorite, 2captcha image en fallback."""
+    twocaptcha_key = os.getenv("TWOCAPTCHA_API_KEY", "")
 
     try:
-        log.info("[AI] Initialisation du client OpenAI (GitHub Models)...")
-        client = OpenAI(
-            base_url="https://models.inference.ai.azure.com",
-            api_key=github_token
-        )
-
-        log.info("[AI] Recherche de l'iframe MTCaptcha...")
-        wait = WebDriverWait(driver, 20)
-
-        wait.until(EC.frame_to_be_available_and_switch_to_it(
-            (By.CSS_SELECTOR, "iframe[src*='mtcaptcha.com']")
-        ))
-
-        captcha_element = wait.until(
-            EC.visibility_of_element_located((By.ID, "mtcap-image-1"))
-        )
-
-        style = captcha_element.get_attribute("style")
-        match = re.search(r'base64,([^"]+)', style)
-        if not match:
-            log.error("[AI] Impossible d'extraire le base64 de l'image.")
-            driver.switch_to.default_content()
+        log.info("[CAPTCHA] Extraction de l'image MTCaptcha...")
+        base64_image = _extract_mtcaptcha_base64(driver)
+        if not base64_image:
             return None
 
-        base64_image = match.group(1)
+        # Priorite 1 : GitHub Models GPT-4o
+        if github_token:
+            try:
+                log.info("[CAPTCHA] Envoi a GPT-4o (GitHub Models)...")
+                client = OpenAI(
+                    base_url="https://models.inference.ai.azure.com",
+                    api_key=github_token
+                )
+                response = client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[{
+                        "role": "user",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": (
+                                    "Analyse cette image de CAPTCHA. Elle contient des lettres et/ou des chiffres "
+                                    "deformes et barres. Reponds UNIQUEMENT avec la sequence de caracteres que tu "
+                                    "vois, sans aucune explication, phrase ou formatage."
+                                )
+                            },
+                            {
+                                "type": "image_url",
+                                "image_url": {"url": f"data:image/png;base64,{base64_image}"}
+                            }
+                        ]
+                    }],
+                    max_tokens=30
+                )
+                captcha_text = response.choices[0].message.content.strip()
+                log.info(f"[CAPTCHA] GPT-4o → '{captcha_text}'")
+                driver.switch_to.default_content()
+                return captcha_text
+            except Exception as e:
+                log.warning(f"[CAPTCHA] GPT-4o echoue ({e}), tentative 2captcha image...")
 
-        log.info("[AI] Envoi de l'image a GPT-4o...")
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {
-                            "type": "text",
-                            "text": (
-                                "Analyse cette image de CAPTCHA. Elle contient des lettres et/ou des chiffres "
-                                "deformes et barres. Reponds UNIQUEMENT avec la sequence de caracteres que tu "
-                                "vois, sans aucune explication, phrase ou formatage."
-                            )
-                        },
-                        {
-                            "type": "image_url",
-                            "image_url": {"url": f"data:image/png;base64,{base64_image}"}
-                        }
-                    ]
-                }
-            ],
-            max_tokens=30
-        )
+        # Priorite 2 : 2captcha image captcha (workers humains)
+        if twocaptcha_key and twocaptcha_key not in ("dummy_skip", ""):
+            try:
+                log.info("[CAPTCHA] Envoi a 2captcha (image normal)...")
+                import base64 as b64mod
+                solver = TwoCaptcha(twocaptcha_key)
+                img_bytes = b64mod.b64decode(base64_image + "==")
+                result = solver.normal(file=img_bytes)
+                captcha_text = result["code"].strip()
+                log.info(f"[CAPTCHA] 2captcha → '{captcha_text}'")
+                driver.switch_to.default_content()
+                return captcha_text
+            except Exception as e:
+                log.error(f"[CAPTCHA] 2captcha image echoue: {e}")
 
-        captcha_text = response.choices[0].message.content.strip()
-        log.info(f"[AI] Reponse GPT-4o : {captcha_text}")
-
+        log.warning("[CAPTCHA] Aucun solveur disponible (GITHUB_TOKEN et TWOCAPTCHA_API_KEY absents).")
         driver.switch_to.default_content()
-        return captcha_text
+        return None
 
     except Exception as e:
-        log.error(f"[AI] Erreur resolution CAPTCHA : {e}")
+        log.error(f"[CAPTCHA] Erreur resolution CAPTCHA : {e}")
         try: driver.switch_to.default_content()
         except: pass
         return None

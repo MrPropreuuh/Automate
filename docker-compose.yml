@@ -1,0 +1,18 @@
+services:
+  lostgard-voter:
+    build: .
+    container_name: lostgard-voter
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./state.json:/app/state.json
+      - ./proxy_cooldown.json:/app/proxy_cooldown.json
+      - ./proxies.txt:/app/proxies.txt
+      - ./lostgard_voter.log:/app/lostgard_voter.log
+    shm_size: '256mb'
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
