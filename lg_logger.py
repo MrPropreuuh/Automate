@@ -32,6 +32,15 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt, datefmt="%Y-%m-%d %H:%M:%S")
         return formatter.format(record)
 
+class _ResilientStreamHandler(logging.StreamHandler):
+    """StreamHandler that silently drops writes when stdout is closed (e.g. after Chrome fork)."""
+    def emit(self, record):
+        try:
+            super().emit(record)
+        except (ValueError, OSError):
+            pass  # closed fd — ignore
+
+
 def setup_logger(name="LGVoter"):
     """
     Sets up a logger with both console and rotating file handlers.
@@ -43,7 +52,7 @@ def setup_logger(name="LGVoter"):
     # Check if handlers already exist to avoid duplication
     if not logger.handlers:
         # 1. Console Handler
-        console_handler = logging.StreamHandler(sys.stdout)
+        console_handler = _ResilientStreamHandler(sys.stdout)
         console_handler.setFormatter(CustomFormatter())
         console_handler.setLevel(logging.INFO)
         logger.addHandler(console_handler)
